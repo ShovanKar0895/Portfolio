@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shovan's Portfolio</title>
+    <!-- Link to Tailwind CSS -->
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@2.x.x/dist/alpine.min.js" defer></script>
+    <!-- Google Font for code style (Fira Code) -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+</head>
+<style>
+    .nav-link {
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    .nav-link:hover {
+        color: #fbbf24; /* Tailwind's yellow-400 */
+        transform: scale(1.1);
+    }
+    .hamburger-icon {
+        transition: transform 0.3s ease;
+    }
+    .hamburger-icon:hover {
+        transform: rotate(90deg);
+    }
+</style>
+
+<body>
+
+    <!-- Navbar -->
+    <!-- <header class="navbar container mx-auto px-4 flex justify-between items-center">
+        <h1 class="text-2xl font-bold text-white">Shovan</h1>
+        <nav>
+            <ul class="flex space-x-4">
+                <li><a href="#about" class="hover:text-indigo-400">About</a></li>
+                <li><a href="#skills" class="hover:text-indigo-400">Skills</a></li>
+                <li><a href="#projects" class="hover:text-indigo-400">Projects</a></li>
+                <li><a href="#contact" class="hover:text-indigo-400">Contact</a></li>
+            </ul>
+        </nav>
+    </header> -->
+
+    <header class="bg-gray-900 text-white py-4 fixed w-full top-0 left-0 z-50">
+        <div class="container mx-auto flex items-center justify-between px-4">
+            <!-- Logo -->
+            <div class="text-2xl font-bold">Shovan</div>
+            
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex space-x-6">
+                <a href="#about" class="nav-link text-lg">About</a>
+                <a href="#skills" class="nav-link text-lg">Skills</a>
+                <a href="#projects" class="nav-link text-lg">Projects</a>
+                <a href="#contact" class="nav-link text-lg">Contact</a>
+            </nav>
+            
+            <!-- Hamburger Button -->
+            <button @click="open = !open" class="md:hidden text-2xl hamburger-icon">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                </svg>
+            </button>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div x-data="{ open: false }" x-show="open" @click.away="open = false" class="md:hidden absolute top-16 left-0 w-full bg-gray-800 shadow-lg">
+            <nav class="flex flex-col items-center space-y-4 py-4">
+                <a href="#about" class="text-white text-lg nav-link">About</a>
+                <a href="#projects" class="text-white text-lg nav-link">Projects</a>
+                <a href="#skills" class="text-white text-lg nav-link">Skills</a>
+                <a href="#contact" class="text-white text-lg nav-link">Contact</a>
+            </nav>
+        </div>
+    </header>
+    
+    
+
+    <!-- Hero Section -->
+    <!-- <section class="hero">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="10" fill="none" stroke="#58a6ff" stroke-width="2">
+                <animate attributeName="r" from="10" to="20" dur="2s" repeatCount="indefinite" />
+            </circle>
+            <line x1="10" y1="10" x2="90" y2="90" stroke="#58a6ff" stroke-width="2">
+                <animate attributeName="x1" from="10" to="90" dur="2s" repeatCount="indefinite" />
+            </line>
+            <line x1="10" y1="90" x2="90" y2="10" stroke="#58a6ff" stroke-width="2">
+                <animate attributeName="x2" from="10" to="90" dur="2s" repeatCount="indefinite" />
+            </line>
+        </svg>
+        <div class="hero-content">
+            <h2 class="text-5xl font-bold">
+                Hello, I'm <span class="static-text"> </span><span id="typewriter" class="typewriter-wrapper"></span>
+            </h2>
+            <p class="mt-4 text-lg">A Backend Developer Specializing in Laravel and MongoDB</p>
+            <a href="#projects"
+                class="mt-6 inline-block px-8 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700">View
+                My Work</a>
+        </div>
+    </section> -->
+
+    <section id="hero" class="relative w-full h-screen bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-white flex items-center">
+        <div class="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between h-full">
+            <!-- Text Content -->
+            <div class="text-center md:text-left mb-8 md:mb-0 md:w-1/2">
+                <h1 class="text-5xl md:text-6xl font-bold leading-tight mb-4">Hi, I'm Shovan</h1>
+                <p class="text-xl md:text-2xl mb-6">A passionate full-stack developer specializing in building robust web applications and exploring new technologies.</p>
+                <a href="#projects" class="inline-block px-8 py-3 bg-indigo-600 text-white rounded-lg shadow-lg hover:bg-indigo-700 transition">See My Work</a>
+            </div>
+            <!-- Hero Image or Illustration -->
+            <div class="md:w-1/2 flex justify-center items-center">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+                    <circle cx="50" cy="50" r="10" fill="none" stroke="#58a6ff" stroke-width="2">
+                        <animate attributeName="r" from="10" to="20" dur="2s" repeatCount="indefinite" />
+                    </circle>
+                    <line x1="10" y1="10" x2="90" y2="90" stroke="#58a6ff" stroke-width="2">
+                        <animate attributeName="x1" from="10" to="90" dur="2s" repeatCount="indefinite" />
+                    </line>
+                    <line x1="10" y1="90" x2="90" y2="10" stroke="#58a6ff" stroke-width="2">
+                        <animate attributeName="x2" from="10" to="90" dur="2s" repeatCount="indefinite" />
+                    </line>
+                </svg>
+            </div>
+        </div>
+    </section>
+    
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container mx-auto px-4 about-content">
+            <!-- Image -->
+            <div class="image">
+                <!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+                <svg width="800px" height="800px" fill="#58a6ff" version="1.1" viewBox="0 0 512 512"
+                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg">
+
+
+                    <path
+                        d="m503.83 21.787h-495.66c-4.513 0-8.17 3.657-8.17 8.17v452.08c0 4.513 3.657 8.17 8.17 8.17h495.66c4.513 0 8.17-3.657 8.17-8.17v-452.08c0-4.513-3.657-8.17-8.17-8.17zm-8.17 452.08h-479.32v-370.38h479.32v370.38zm0-386.72h-479.32v-49.021h479.32v49.021z" />
+                    <path
+                        d="m471.15 392.17c4.513 0 8.17-3.657 8.17-8.17v-256c0-4.513-3.657-8.17-8.17-8.17h-430.3c-4.513 0-8.17 3.657-8.17 8.17v321.36c0 4.513 3.657 8.17 8.17 8.17h430.3c4.513 0 8.17-3.657 8.17-8.17v-32.681c0-4.513-3.657-8.17-8.17-8.17s-8.17 3.657-8.17 8.17v24.511h-413.96v-305.02h413.96v247.83c1e-3 4.513 3.658 8.17 8.171 8.17z" />
+                    <path
+                        d="m141.62 166.13c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c0-13.515-10.996-24.511-24.511-24.511zm8.17 46.298c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <path
+                        d="m190.64 166.13c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c1e-3 -4.513-3.656-8.17-8.17-8.17z" />
+                    <path
+                        d="m239.66 166.13c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c-1e-3 -13.515-10.997-24.511-24.511-24.511zm8.17 46.298c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <path
+                        d="m288.68 166.13c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c0-4.513-3.657-8.17-8.17-8.17z" />
+                    <path
+                        d="m321.36 166.13c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c0-4.513-3.657-8.17-8.17-8.17z" />
+                    <path
+                        d="m370.38 166.13c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c0-13.515-10.996-24.511-24.511-24.511zm8.17 46.298c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <path
+                        d="m174.3 340.43c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c0-13.515-10.997-24.511-24.511-24.511zm8.17 46.297c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <path
+                        d="m125.28 340.43c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c0-4.514-3.657-8.17-8.17-8.17z" />
+                    <path
+                        d="m239.66 340.43c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c-1e-3 -13.515-10.997-24.511-24.511-24.511zm8.17 46.297c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <path
+                        d="m288.68 340.43c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c0-4.514-3.657-8.17-8.17-8.17z" />
+                    <path
+                        d="m321.36 340.43c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c0-4.514-3.657-8.17-8.17-8.17z" />
+                    <path
+                        d="m370.38 340.43c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c0-13.515-10.996-24.511-24.511-24.511zm8.17 46.297c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <path
+                        d="m370.38 253.28c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c0-13.515-10.996-24.511-24.511-24.511zm8.17 46.297c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <path
+                        d="m321.36 253.28c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c0-4.513-3.657-8.17-8.17-8.17z" />
+                    <path
+                        d="m272.34 253.28c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c0-13.515-10.996-24.511-24.511-24.511zm8.171 46.297c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <path
+                        d="m223.32 253.28c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c0-4.513-3.657-8.17-8.17-8.17z" />
+                    <path
+                        d="m190.64 253.28c-4.513 0-8.17 3.657-8.17 8.17v54.468c0 4.513 3.657 8.17 8.17 8.17s8.17-3.657 8.17-8.17v-54.468c1e-3 -4.513-3.656-8.17-8.17-8.17z" />
+                    <path
+                        d="m141.62 253.28c-13.515 0-24.511 10.996-24.511 24.511v21.787c0 13.515 10.996 24.511 24.511 24.511s24.511-10.996 24.511-24.511v-21.787c0-13.515-10.996-24.511-24.511-24.511zm8.17 46.297c0 4.506-3.665 8.17-8.17 8.17-4.506 0-8.17-3.665-8.17-8.17v-21.787c0-4.506 3.665-8.17 8.17-8.17 4.506 0 8.17 3.665 8.17 8.17v21.787z" />
+                    <circle cx="430.3" cy="62.638" r="8.17" />
+                    <circle cx="397.62" cy="62.638" r="8.17" />
+                    <circle cx="462.98" cy="62.638" r="8.17" />
+                </svg>
+            </div>
+            <!-- Text Content -->
+            <div class="text">
+                <h3 class="text-3xl font-semibold mb-6 text-white">About Me</h3>
+                <p class="text-gray-300">I am a backend developer based in India, experienced in building scalable,
+                    secure, and efficient systems. I love working with technologies like Laravel, MongoDB, and
+                    PostgreSQL, focusing on the backend architecture of web applications.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills-section py-12 bg-gradient-to-r from-gray-900 via-gray-800 to-gray-700 text-white">
+        <div class="container mx-auto px-4 flex flex-col items-center">
+            <!-- Text Content -->
+            <div class="text mb-8">
+                <h2 class="text-4xl font-semibold mb-4 text-center">Skills & Expertise</h2>
+                <p class="text-lg mb-6 text-center">Dive into the technologies I love working with! Each of these skills represents my passion and expertise in the tech world:</p>
+                <ul class="list-none flex flex-wrap gap-4 p-0 justify-center">
+                    <li class="relative bg-red-700 p-4 rounded-lg shadow-md text-center w-32 flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 hover:bg-red-800">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel" class="w-16 mb-2 transition-transform duration-300 hover:scale-110">
+                        <p class="font-semibold text-lg">Laravel</p>
+                    </li>
+                    <li class="relative bg-green-700 p-4 rounded-lg shadow-md text-center w-32 flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 hover:bg-green-800">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" class="w-16 mb-2 transition-transform duration-300 hover:scale-110">
+                        <p class="font-semibold text-lg">Node.js</p>
+                    </li>
+                    <li class="relative bg-green-800 p-4 rounded-lg shadow-md text-center w-32 flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 hover:bg-green-900">
+                        <img src="https://static.djangoproject.com/img/logos/django-logo-negative.svg" alt="Django" class="w-16 mb-2 transition-transform duration-300 hover:scale-110">
+                        <p class="font-semibold text-lg">Django</p>
+                    </li>
+                    <li class="relative bg-yellow-600 p-4 rounded-lg shadow-md text-center w-32 flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 hover:bg-yellow-700">
+                        <img src="img/Amazon_Web_Services_Logo.svg" alt="AWS" class="w-16 mb-2 transition-transform duration-300 hover:scale-110">
+                        <p class="font-semibold text-lg">AWS</p>
+                    </li>
+                    <li class="relative bg-green-800 p-4 rounded-lg shadow-md text-center w-32 flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 hover:bg-green-900">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" class="w-16 mb-2 transition-transform duration-300 hover:scale-110">
+                        <p class="font-semibold text-lg">MongoDB</p>
+                    </li>
+                    <li class="relative bg-blue-800 p-4 rounded-lg shadow-md text-center w-32 flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 hover:bg-blue-900">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="w-16 mb-2 transition-transform duration-300 hover:scale-110">
+                        <p class="font-semibold text-lg">PostgreSQL</p>
+                    </li>
+                    <li class="relative bg-blue-700 p-4 rounded-lg shadow-md text-center w-32 flex flex-col items-center justify-center transform transition-transform duration-300 hover:scale-105 hover:bg-blue-800">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" class="w-16 mb-2 transition-transform duration-300 hover:scale-110">
+                        <p class="font-semibold text-lg">MySQL</p>
+                    </li>
+                </ul>
+            </div>
+            <!-- Resume CTA -->
+            <div class="text-center">
+                <p class="text-lg mb-4">Curious to learn more about my skills and experience?</p>
+                <a href="path/to/resume.pdf" class="inline-block px-8 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition-colors duration-300">Download My Resume</a>
+            </div>
+        </div>
+    </section>
+    
+    
+     
+    
+    
+
+    <!-- <section id="skills" class="skills-section">
+        <div class="skills-content">
+            <div class="skills-text">
+                <h2>Skills</h2>
+                <p>I'm passionate about exploring new technologies and continuously enhancing my skills. Here are some of the key technologies I work with:</p>
+                <ul>
+                    <li id="skill-laravel" class="skill-item" data-target="icon-laravel">Laravel</li>
+                    <li id="skill-nodejs" class="skill-item" data-target="icon-nodejs">Node.js</li>
+                    <li id="skill-django" class="skill-item" data-target="icon-django">Django</li>
+                    <li id="skill-aws" class="skill-item" data-target="icon-aws">AWS</li>
+                    <li id="skill-mysql" class="skill-item" data-target="icon-mysql">MySQL</li>
+                    <li id="skill-mongodb" class="skill-item" data-target="icon-mongodb">MongoDB</li>
+                    <li id="skill-postgresql" class="skill-item" data-target="icon-postgresql">PostgreSQL</li>
+                </ul>
+                <p class="skills-download">Want to dive deeper into my skillset? <a href="path/to/resume.pdf" target="_blank">Download my resume here</a>.</p>
+            </div>
+            <div class="skills-image">
+                <div class="tech-icons">
+                    <img id="icon-laravel" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/laravel/laravel-original.svg" alt="Laravel">
+                    <img id="icon-nodejs" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+                    <img id="icon-django" src="https://static.djangoproject.com/img/logos/django-logo-negative.svg" alt="Django">
+                    <img id="icon-aws" src="img/Amazon_Web_Services_Logo.svg" alt="AWS">
+                    <img id="icon-mysql" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL">
+                    <img id="icon-mongodb" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+                    <img id="icon-postgresql" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL">
+                </div>
+            </div>
+        </div>
+    </section> -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+     <!-- Projects Section -->
+     <section id="projects" class="projects-section">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold mb-4 text-center">Projects</h2>
+            <div class="projects-content">
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Project 1">
+                    <div class="project-details">
+                        <h3 class="project-title">Project Title 1</h3>
+                        <p class="project-description">A brief description of the project, highlighting key features and
+                            technologies used.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/your-repo-link-1" target="_blank">View Code</a>
+                            <a href="https://your-deployed-site-link-1.com" target="_blank">View Site</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Repeat similar project cards for more projects -->
+                <div class="project-card">
+                    <img src="https://via.placeholder.com/300x200" alt="Project 2">
+                    <div class="project-details">
+                        <h3 class="project-title">Project Title 2</h3>
+                        <p class="project-description">A brief description of the project, highlighting key features and
+                            technologies used.</p>
+                        <div class="project-links">
+                            <a href="https://github.com/your-repo-link-2" target="_blank">View Code</a>
+                            <a href="https://your-deployed-site-link-2.com" target="_blank">View Site</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more projects as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-white mb-8">Contact</h2>
+            <div class="flex justify-center">
+                <form class="w-full max-w-lg bg-gray-700 p-6 rounded-lg shadow-lg">
+                    <div class="mb-4">
+                        <label for="name" class="block text-gray-300 text-sm font-bold mb-2">Name</label>
+                        <input type="text" id="name" name="name" class="form-input w-full bg-gray-600 text-gray-200 rounded-lg shadow-sm" placeholder="Your Name">
+                    </div>
+                    <div class="mb-4">
+                        <label for="email" class="block text-gray-300 text-sm font-bold mb-2">Email</label>
+                        <input type="email" id="email" name="email" class="form-input w-full bg-gray-600 text-gray-200 rounded-lg shadow-sm" placeholder="Your Email">
+                    </div>
+                    <div class="mb-4">
+                        <label for="message" class="block text-gray-300 text-sm font-bold mb-2">Message</label>
+                        <textarea id="message" name="message" rows="4" class="form-textarea w-full bg-gray-600 text-gray-200 rounded-lg shadow-sm" placeholder="Your Message"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-indigo-600 text-white font-bold py-2 px-4 rounded-lg shadow hover:bg-indigo-700">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 text-center bg-gray-900">
+        <p class="text-white">&copy; 2024 Shovan. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript for Typewriter Effect -->
+     <script type="text/javascript" src="js/scripts.js"></script>
+
+</body>
+
+</html>
