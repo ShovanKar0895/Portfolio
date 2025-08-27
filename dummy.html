@@ -624,59 +624,19 @@
       </div>
 
       <!-- Button -->
+      <!-- <button onclick="openModal()" 
+              class="mt-4 px-6 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-md transition">
+        View Detailed Timeline
+      </button> -->
+      <!-- Button -->
       <button onclick="openModal()" 
               class="mt-4 px-6 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-md transition">
         View Detailed Timeline
       </button>
+
     </div>
   </div>
 </section>
-
-<!-- Modal -->
-<div id="journeyModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
-  <div class="bg-[#161b22] text-white rounded-xl shadow-lg w-11/12 md:w-2/3 lg:w-1/2 p-6 relative overflow-y-auto max-h-[80vh]">
-
-    <!-- Close Button -->
-    <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">
-      ✕
-    </button>
-
-    <h3 class="text-2xl font-bold mb-6 text-purple-400">Timeline of My Academic Journey</h3>
-
-    <!-- Timeline -->
-    <div class="relative border-l-2 border-purple-500 pl-6 space-y-8">
-
-      <!-- Step 1 -->
-      <div>
-        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-        <h4 class="text-lg font-semibold">2018 - First GATE Attempt</h4>
-        <p class="text-gray-300">Started preparing for GATE and learned persistence through multiple attempts.</p>
-      </div>
-
-      <!-- Step 2 -->
-      <div>
-        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-        <h4 class="text-lg font-semibold">2020 - AIR 257</h4>
-        <p class="text-gray-300">Achieved All India Rank 257 in GATE and got admission to IIT Madras (MS in Electronics).</p>
-      </div>
-
-      <!-- Step 3 -->
-      <div>
-        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-        <h4 class="text-lg font-semibold">2021 - A Bold Choice</h4>
-        <p class="text-gray-300">Decided to step away from the MS program to explore different opportunities.</p>
-      </div>
-
-      <!-- Step 4 -->
-      <div>
-        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-        <h4 class="text-lg font-semibold">2024 - A New Chapter</h4>
-        <p class="text-gray-300">Cleared IIT Madras BS in Data Science entrance exam with ~99 percentile and enrolled in the program.</p>
-      </div>
-
-    </div>
-  </div>
-</div>
 
 <!-- Footer Section -->
 <footer id="contact" class="relative bg-[#0d1117] py-16 border-t border-gray-800">
@@ -708,53 +668,103 @@
   </div>
 </footer>
 
-<!-- Modal (Hidden by default) -->
-<div id="contactModal"
-  class="fixed inset-0 bg-black bg-opacity-70 hidden items-center justify-center z-50">
-  <div class="bg-[#161b22] p-8 rounded-2xl shadow-xl w-[90%] max-w-lg relative">
+<!-- Modal -->
+<div id="journeyModal" 
+     class="fixed inset-0 hidden z-50 flex items-center justify-center 
+            bg-black/70 transition-opacity duration-300 opacity-0">
+
+  <!-- Modal Content -->
+  <div id="journeyContent" 
+       class="bg-[#161b22] text-white rounded-xl shadow-lg 
+              w-11/12 md:w-2/3 lg:w-1/2 p-6 relative
+              transform opacity-0 scale-95 translate-y-4 
+              transition-all duration-300 ease-out 
+              max-h-[80vh] overflow-y-auto">
+
     <!-- Close Button -->
-    <button id="closeModal" class="absolute top-3 right-3 text-gray-400 hover:text-white">
-      ✖
+    <button onclick="closeModal()" 
+            class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">
+      ✕
     </button>
 
-    <!-- Form Heading -->
-    <h3 class="text-2xl font-bold text-white mb-6">Get in Touch</h3>
+    <h3 class="text-2xl font-bold mb-6 text-purple-400">Timeline of My Academic Journey</h3>
 
-    <!-- Contact Form -->
-    <form class="space-y-5">
+    <!-- Timeline -->
+    <div class="relative border-l-2 border-purple-500 pl-6 space-y-8">
+      <!-- Step 1 -->
       <div>
-        <label class="block text-gray-300 mb-2">Name</label>
-        <input type="text" class="w-full px-4 py-3 rounded-lg bg-[#0d1117] border border-gray-700 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-500 outline-none transition" placeholder="Your Name">
+        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
+        <h4 class="text-lg font-semibold">2018 - First GATE Attempt</h4>
+        <p class="text-gray-300">Started preparing for GATE and learned persistence through multiple attempts.</p>
       </div>
+      <!-- Step 2 -->
       <div>
-        <label class="block text-gray-300 mb-2">Email</label>
-        <input type="email" class="w-full px-4 py-3 rounded-lg bg-[#0d1117] border border-gray-700 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-500 outline-none transition" placeholder="your@email.com">
+        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
+        <h4 class="text-lg font-semibold">2020 - AIR 257</h4>
+        <p class="text-gray-300">Achieved All India Rank 257 in GATE and got admission to IIT Madras (MS in Electronics).</p>
       </div>
+      <!-- Step 3 -->
       <div>
-        <label class="block text-gray-300 mb-2">Message</label>
-        <textarea rows="4" class="w-full px-4 py-3 rounded-lg bg-[#0d1117] border border-gray-700 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-500 outline-none transition" placeholder="Write your message..."></textarea>
+        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
+        <h4 class="text-lg font-semibold">2021 - A Bold Choice</h4>
+        <p class="text-gray-300">Decided to step away from the MS program to explore different opportunities.</p>
       </div>
-
-      <!-- Submit -->
-      <button type="submit"
-        class="w-full py-3 bg-purple-500 hover:bg-purple-600 rounded-lg text-white font-semibold transition">
-        Send Message 🚀
-      </button>
-    </form>
+      <!-- Step 4 -->
+      <div>
+        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
+        <h4 class="text-lg font-semibold">2024 - A New Chapter</h4>
+        <p class="text-gray-300">Cleared IIT Madras BS in Data Science entrance exam with ~99 percentile and enrolled in the program.</p>
+      </div>
+    </div>
   </div>
 </div>
+
 
 </body>
 
 <script>
+  const modal = document.getElementById("journeyModal");
+  const modalContent = modal.querySelector("div");
+
   function openModal() {
-    document.getElementById("journeyModal").classList.remove("hidden");
-    document.getElementById("journeyModal").classList.add("flex");
+    modal.classList.remove("hidden");
+    setTimeout(() => {
+      modal.classList.add("opacity-100");
+      modal.classList.remove("opacity-0");
+      modalContent.classList.add("opacity-100", "scale-100", "translate-y-0");
+      modalContent.classList.remove("opacity-0", "scale-95", "translate-y-4");
+    }, 10);
   }
+
   function closeModal() {
-    document.getElementById("journeyModal").classList.remove("flex");
-    document.getElementById("journeyModal").classList.add("hidden");
+    modal.classList.remove("opacity-100");
+    modal.classList.add("opacity-0");
+    modalContent.classList.remove("opacity-100", "scale-100", "translate-y-0");
+    modalContent.classList.add("opacity-0", "scale-95", "translate-y-4");
+    setTimeout(() => {
+      modal.classList.add("hidden");
+    }, 300);
   }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        const dot = entry.target.querySelector(".timeline-dot");
+        if (entry.isIntersecting) {
+          dot.classList.add("bg-purple-500", "shadow-lg");
+          dot.classList.remove("bg-gray-600");
+        } else {
+          dot.classList.remove("bg-purple-500", "shadow-lg");
+          dot.classList.add("bg-gray-600");
+        }
+      });
+    },
+    { threshold: 0.6 }
+  );
+
+  document.querySelectorAll(".timeline-item").forEach((item) => {
+    observer.observe(item);
+  });
 </script>
 </html>
 
