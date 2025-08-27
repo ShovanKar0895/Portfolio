@@ -588,6 +588,96 @@
   </div>
 </section>
 
+<section class="relative bg-gradient-to-b from-[#0d1117] via-[#0d1117] to-[#161b22] py-20">
+  <div class="max-w-4xl mx-auto px-6 text-center">
+    <!-- Heading -->
+    <h2 class="text-4xl font-extrabold mb-6 text-purple-400">
+      My Academic Journey 🎓
+    </h2>
+
+    <!-- Content Box -->
+    <div class="bg-[#161b22]/70 backdrop-blur-md border border-gray-800 rounded-2xl p-8 shadow-lg">
+      <p class="text-gray-300 text-lg leading-relaxed mb-4">
+        From clearing <span class="font-semibold text-white">GATE multiple times</span> to securing 
+        an <span class="font-semibold text-purple-400">AIR 257 in 2020</span> and earning admission 
+        to <span class="font-semibold text-white">IIT Madras (MS, Electronics)</span> — 
+        my path has been full of challenges and choices.
+      </p>
+      <p class="text-gray-300 text-lg leading-relaxed mb-6">
+        Though I stepped away from that program, in <span class="font-semibold text-white">2024</span> 
+        I began a new chapter: pursuing the 
+        <span class="font-semibold text-purple-400">IIT Madras BS in Data Science & Applications</span>, 
+        after achieving <span class="font-semibold text-white">~99 percentile</span> in the entrance exam.
+      </p>
+
+      <!-- Tags -->
+      <div class="flex justify-center flex-wrap gap-3 mb-6">
+        <span class="px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 text-sm font-medium shadow-md">
+          💡 Persistence
+        </span>
+        <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium shadow-md">
+          📘 Learning
+        </span>
+        <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm font-medium shadow-md">
+          🔄 Reinvention
+        </span>
+      </div>
+
+      <!-- Button -->
+      <button onclick="openModal()" 
+              class="mt-4 px-6 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-md transition">
+        View Detailed Timeline
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div id="journeyModal" class="fixed inset-0 bg-black/70 hidden items-center justify-center z-50">
+  <div class="bg-[#161b22] text-white rounded-xl shadow-lg w-11/12 md:w-2/3 lg:w-1/2 p-6 relative overflow-y-auto max-h-[80vh]">
+
+    <!-- Close Button -->
+    <button onclick="closeModal()" class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">
+      ✕
+    </button>
+
+    <h3 class="text-2xl font-bold mb-6 text-purple-400">Timeline of My Academic Journey</h3>
+
+    <!-- Timeline -->
+    <div class="relative border-l-2 border-purple-500 pl-6 space-y-8">
+
+      <!-- Step 1 -->
+      <div>
+        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
+        <h4 class="text-lg font-semibold">2018 - First GATE Attempt</h4>
+        <p class="text-gray-300">Started preparing for GATE and learned persistence through multiple attempts.</p>
+      </div>
+
+      <!-- Step 2 -->
+      <div>
+        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
+        <h4 class="text-lg font-semibold">2020 - AIR 257</h4>
+        <p class="text-gray-300">Achieved All India Rank 257 in GATE and got admission to IIT Madras (MS in Electronics).</p>
+      </div>
+
+      <!-- Step 3 -->
+      <div>
+        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
+        <h4 class="text-lg font-semibold">2021 - A Bold Choice</h4>
+        <p class="text-gray-300">Decided to step away from the MS program to explore different opportunities.</p>
+      </div>
+
+      <!-- Step 4 -->
+      <div>
+        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
+        <h4 class="text-lg font-semibold">2024 - A New Chapter</h4>
+        <p class="text-gray-300">Cleared IIT Madras BS in Data Science entrance exam with ~99 percentile and enrolled in the program.</p>
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <!-- Footer Section -->
 <footer id="contact" class="relative bg-[#0d1117] py-16 border-t border-gray-800">
   <div class="max-w-5xl mx-auto text-center px-6">
@@ -656,6 +746,17 @@
 
 </body>
 
+<script>
+  function openModal() {
+    document.getElementById("journeyModal").classList.remove("hidden");
+    document.getElementById("journeyModal").classList.add("flex");
+  }
+  function closeModal() {
+    document.getElementById("journeyModal").classList.remove("flex");
+    document.getElementById("journeyModal").classList.add("hidden");
+  }
+</script>
+</html>
 
 
 

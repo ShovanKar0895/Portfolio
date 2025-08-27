@@ -11,6 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
+
+
 // Lottie loader
 lottie.loadAnimation({
   container: document.getElementById("lottie-loader"),
@@ -77,24 +79,24 @@ var swiper = new Swiper(".mySwiper", {
   });
 
 
-   const openModal = document.getElementById('openModal');
-  const closeModal = document.getElementById('closeModal');
-  const contactModal = document.getElementById('contactModal');
+  //  const openModal = document.getElementById('openModal');
+  // const closeModal = document.getElementById('closeModal');
+  // const contactModal = document.getElementById('contactModal');
 
-  openModal.addEventListener('click', () => {
-    contactModal.classList.remove('hidden');
-    contactModal.classList.add('flex');
-  });
+  // openModal.addEventListener('click', () => {
+  //   contactModal.classList.remove('hidden');
+  //   contactModal.classList.add('flex');
+  // });
 
-  closeModal.addEventListener('click', () => {
-    contactModal.classList.add('hidden');
-    contactModal.classList.remove('flex');
-  });
+  // closeModal.addEventListener('click', () => {
+  //   contactModal.classList.add('hidden');
+  //   contactModal.classList.remove('flex');
+  // });
 
-  // Close on background click
-  contactModal.addEventListener('click', (e) => {
-    if (e.target === contactModal) {
-      contactModal.classList.add('hidden');
-      contactModal.classList.remove('flex');
-    }
-  });
+  // // Close on background click
+  // contactModal.addEventListener('click', (e) => {
+  //   if (e.target === contactModal) {
+  //     contactModal.classList.add('hidden');
+  //     contactModal.classList.remove('flex');
+  //   }
+  // });
