@@ -588,15 +588,18 @@
   </div>
 </section>
 
+<!-- Academics Section -->
+<section class="relative bg-gradient-to-b from-[#0d1117] via-[#0d1117] to-[#161b22] py-20" x-data="{ journeyModal: false }">
+  <!-- Academics Section -->
 <section class="relative bg-gradient-to-b from-[#0d1117] via-[#0d1117] to-[#161b22] py-20">
-  <div class="max-w-4xl mx-auto px-6 text-center">
+  <div class="max-w-5xl mx-auto px-6 text-center">
     <!-- Heading -->
-    <h2 class="text-4xl font-extrabold mb-6 text-purple-400">
+    <h2 class="text-4xl font-extrabold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
       My Academic Journey 🎓
     </h2>
 
     <!-- Content Box -->
-    <div class="bg-[#161b22]/70 backdrop-blur-md border border-gray-800 rounded-2xl p-8 shadow-lg">
+    <div class="bg-[#161b22]/80 backdrop-blur-md border border-gray-800 rounded-2xl p-8 shadow-2xl">
       <p class="text-gray-300 text-lg leading-relaxed mb-4">
         From clearing <span class="font-semibold text-white">GATE multiple times</span> to securing 
         an <span class="font-semibold text-purple-400">AIR 257 in 2020</span> and earning admission 
@@ -612,30 +615,92 @@
 
       <!-- Tags -->
       <div class="flex justify-center flex-wrap gap-3 mb-6">
-        <span class="px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 text-sm font-medium shadow-md">
-          💡 Persistence
-        </span>
-        <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium shadow-md">
-          📘 Learning
-        </span>
-        <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm font-medium shadow-md">
-          🔄 Reinvention
-        </span>
+        <span class="px-4 py-2 rounded-full bg-purple-500/20 text-purple-300 text-sm font-medium shadow-md">💡 Persistence</span>
+        <span class="px-4 py-2 rounded-full bg-blue-500/20 text-blue-300 text-sm font-medium shadow-md">📘 Learning</span>
+        <span class="px-4 py-2 rounded-full bg-green-500/20 text-green-300 text-sm font-medium shadow-md">🔄 Reinvention</span>
       </div>
 
       <!-- Button -->
-      <!-- <button onclick="openModal()" 
-              class="mt-4 px-6 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-md transition">
-        View Detailed Timeline
-      </button> -->
-      <!-- Button -->
       <button onclick="openModal()" 
-              class="mt-4 px-6 py-2 rounded-lg bg-purple-600 hover:bg-purple-700 text-white font-semibold shadow-md transition">
+              class="mt-4 px-6 py-2 rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-semibold shadow-lg transition">
         View Detailed Timeline
       </button>
-
     </div>
   </div>
+</section>
+
+  <!-- Timeline Modal -->
+<div id="journeyModal" 
+     class="fixed inset-0 hidden z-50 flex items-center justify-center bg-black/70 transition-opacity duration-300 opacity-0">
+
+  <div id="journeyContent" 
+       class="bg-[#161b22] text-white rounded-xl shadow-2xl 
+              w-11/12 md:w-2/3 lg:w-2/5 max-h-[80vh] relative 
+              transform opacity-0 scale-95 translate-y-4 
+              transition-all duration-300 ease-out 
+              flex flex-col">
+
+    <!-- Sticky Header -->
+    <div class="sticky top-0 z-20 bg-[#161b22] flex items-center justify-between p-4 border-b border-purple-500/30">
+      <h3 class="text-xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-indigo-400">
+        Timeline of My Academic Journey
+      </h3>
+      <button onclick="closeModal()" class="text-gray-400 hover:text-white text-2xl leading-none">✕</button>
+    </div>
+
+    <!-- Timeline Container -->
+    <div id="timelineContainer" 
+         class="relative overflow-y-auto p-6 pr-3 
+                scrollbar-thin scrollbar-thumb-purple-600/70 
+                scrollbar-track-transparent scrollbar-thumb-rounded-full">
+
+      <!-- Vertical Line -->
+      <div class="absolute left-4 top-0 bottom-0 w-1 bg-purple-900/40 rounded-full"></div>
+      <div id="progressLine" class="absolute left-4 top-0 w-1 bg-gradient-to-b from-purple-500 to-indigo-500 rounded-full" style="height: 0;"></div>
+
+      <!-- Timeline Items (latest at top) -->
+      <div class="timeline-item relative pl-12 mb-12">
+        <div class="timeline-dot absolute -left-[11px] w-6 h-6 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400 shadow-lg shadow-purple-600/50"></div>
+        <div class="bg-[#1e2533] rounded-lg p-4 shadow-md hover:shadow-purple-500/30 transition">
+          <h4 class="text-lg font-semibold text-purple-400">2024 - A New Chapter</h4>
+          <p class="text-gray-300">Cleared IIT Madras BS in Data Science entrance exam (~99 percentile) and enrolled in the program.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item relative pl-12 mb-12">
+        <div class="timeline-dot absolute -left-[11px] w-6 h-6 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400 shadow-lg shadow-purple-600/50"></div>
+        <div class="bg-[#1e2533] rounded-lg p-4 shadow-md hover:shadow-purple-500/30 transition">
+          <h4 class="text-lg font-semibold text-purple-400">2021 - A Bold Choice</h4>
+          <p class="text-gray-300">Decided to step away from the MS program to explore different opportunities.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item relative pl-12 mb-12">
+        <div class="timeline-dot absolute -left-[11px] w-6 h-6 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400 shadow-lg shadow-purple-600/50"></div>
+        <div class="bg-[#1e2533] rounded-lg p-4 shadow-md hover:shadow-purple-500/30 transition">
+          <h4 class="text-lg font-semibold text-purple-400">2020 - AIR 257</h4>
+          <p class="text-gray-300">Achieved All India Rank 257 in GATE and got admission to IIT Madras (MS in Electronics).</p>
+        </div>
+      </div>
+
+      <div class="timeline-item relative pl-12 mb-12">
+        <div class="timeline-dot absolute -left-[11px] w-6 h-6 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400 shadow-lg shadow-purple-600/50"></div>
+        <div class="bg-[#1e2533] rounded-lg p-4 shadow-md hover:shadow-purple-500/30 transition">
+          <h4 class="text-lg font-semibold text-purple-400">2018 - First GATE Attempt</h4>
+          <p class="text-gray-300">Started preparing for GATE and learned persistence through multiple attempts.</p>
+        </div>
+      </div>
+
+      <div class="timeline-item relative pl-12">
+        <div class="timeline-dot absolute -left-[11px] w-6 h-6 rounded-full bg-gradient-to-r from-purple-400 to-indigo-400 shadow-lg shadow-purple-600/50"></div>
+        <div class="bg-[#1e2533] rounded-lg p-4 shadow-md hover:shadow-purple-500/30 transition">
+          <h4 class="text-lg font-semibold text-purple-400">2011 - The Beginning</h4>
+          <p class="text-gray-300">Started my academic journey, exploring core foundations in science and math.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 </section>
 
 <!-- Footer Section -->
@@ -668,102 +733,39 @@
   </div>
 </footer>
 
-<!-- Modal -->
-<div id="journeyModal" 
-     class="fixed inset-0 hidden z-50 flex items-center justify-center 
-            bg-black/70 transition-opacity duration-300 opacity-0">
-
-  <!-- Modal Content -->
-  <div id="journeyContent" 
-       class="bg-[#161b22] text-white rounded-xl shadow-lg 
-              w-11/12 md:w-2/3 lg:w-1/2 p-6 relative
-              transform opacity-0 scale-95 translate-y-4 
-              transition-all duration-300 ease-out 
-              max-h-[80vh] overflow-y-auto">
-
-    <!-- Close Button -->
-    <button onclick="closeModal()" 
-            class="absolute top-3 right-3 text-gray-400 hover:text-white text-2xl">
-      ✕
-    </button>
-
-    <h3 class="text-2xl font-bold mb-6 text-purple-400">Timeline of My Academic Journey</h3>
-
-    <!-- Timeline -->
-    <div class="relative border-l-2 border-purple-500 pl-6 space-y-8">
-      <!-- Step 1 -->
-      <div>
-        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-        <h4 class="text-lg font-semibold">2018 - First GATE Attempt</h4>
-        <p class="text-gray-300">Started preparing for GATE and learned persistence through multiple attempts.</p>
-      </div>
-      <!-- Step 2 -->
-      <div>
-        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-        <h4 class="text-lg font-semibold">2020 - AIR 257</h4>
-        <p class="text-gray-300">Achieved All India Rank 257 in GATE and got admission to IIT Madras (MS in Electronics).</p>
-      </div>
-      <!-- Step 3 -->
-      <div>
-        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-        <h4 class="text-lg font-semibold">2021 - A Bold Choice</h4>
-        <p class="text-gray-300">Decided to step away from the MS program to explore different opportunities.</p>
-      </div>
-      <!-- Step 4 -->
-      <div>
-        <div class="absolute -left-3.5 w-6 h-6 bg-purple-500 rounded-full border-2 border-white"></div>
-        <h4 class="text-lg font-semibold">2024 - A New Chapter</h4>
-        <p class="text-gray-300">Cleared IIT Madras BS in Data Science entrance exam with ~99 percentile and enrolled in the program.</p>
-      </div>
-    </div>
-  </div>
-</div>
-
 
 </body>
 
 <script>
-  const modal = document.getElementById("journeyModal");
-  const modalContent = modal.querySelector("div");
+        const modal = document.getElementById("journeyModal");
+  const modalContent = document.getElementById("journeyContent");
+  const timelineContainer = document.getElementById("timelineContainer");
+  const progressLine = document.getElementById("progressLine");
 
   function openModal() {
     modal.classList.remove("hidden");
     setTimeout(() => {
       modal.classList.add("opacity-100");
-      modal.classList.remove("opacity-0");
       modalContent.classList.add("opacity-100", "scale-100", "translate-y-0");
-      modalContent.classList.remove("opacity-0", "scale-95", "translate-y-4");
     }, 10);
   }
 
   function closeModal() {
     modal.classList.remove("opacity-100");
-    modal.classList.add("opacity-0");
     modalContent.classList.remove("opacity-100", "scale-100", "translate-y-0");
-    modalContent.classList.add("opacity-0", "scale-95", "translate-y-4");
-    setTimeout(() => {
-      modal.classList.add("hidden");
-    }, 300);
+    setTimeout(() => modal.classList.add("hidden"), 300);
   }
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        const dot = entry.target.querySelector(".timeline-dot");
-        if (entry.isIntersecting) {
-          dot.classList.add("bg-purple-500", "shadow-lg");
-          dot.classList.remove("bg-gray-600");
-        } else {
-          dot.classList.remove("bg-purple-500", "shadow-lg");
-          dot.classList.add("bg-gray-600");
-        }
-      });
-    },
-    { threshold: 0.6 }
-  );
+  modal.addEventListener("click", (e) => {
+    if (e.target === modal) closeModal();
+  });
 
-  document.querySelectorAll(".timeline-item").forEach((item) => {
-    observer.observe(item);
+  // Progress Line Animation
+  timelineContainer.addEventListener("scroll", () => {
+    const scrollTop = timelineContainer.scrollTop;
+    const scrollHeight = timelineContainer.scrollHeight - timelineContainer.clientHeight;
+    const progress = (scrollTop / scrollHeight) * 100;
+    progressLine.style.height = `${progress}%`;
   });
 </script>
 </html>
