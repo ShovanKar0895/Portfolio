@@ -112,7 +112,7 @@ html {
   animation: marquee 40s linear infinite;
 }
 
-   .custom-scroll::-webkit-scrollbar {
+   /* .custom-scroll::-webkit-scrollbar {
     width: 6px;
   }
   .custom-scroll::-webkit-scrollbar-thumb {
@@ -125,4 +125,50 @@ html {
   .custom-scroll {
     scrollbar-width: thin;
     scrollbar-color: #7c3aed transparent;
-  }
+  } */
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+
+.progress-line {
+      transition: width 0.6s ease-in-out;
+      background: linear-gradient(90deg, #8b5cf6, #a855f7, #c084fc);
+    }
+
+    .timeline-dot {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .timeline-card {
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .timeline-content {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .description-text {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .description-text.line-clamp-none {
+      -webkit-line-clamp: unset;
+    }
+
+    @media (max-width: 640px) {
+      .timeline-card {
+        min-height: 250px;
+      }
+      .description-text {
+        font-size: 0.9rem;
+      }
+    }
