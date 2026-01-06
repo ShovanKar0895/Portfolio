@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // const header = document.querySelector("header");
+  const header = document.querySelector("header");
 
-  const header = document.getElementById("site-header");
-
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 40) {
-    header.classList.add("shadow-xl", "bg-[#0d1117]/95");
-  } else {
-    header.classList.remove("shadow-xl", "bg-[#0d1117]/95");
-  }
-});
-
+  // Add shadow when scrolling
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 50) {
+      header.classList.add("shadow-xl", "bg-gray-900/90");
+    } else {
+      header.classList.remove("shadow-xl", "bg-gray-900/90");
+    }
+  });
 });
 
 
@@ -80,22 +78,25 @@ var swiper = new Swiper(".mySwiper", {
     },
   });
 
-window.addEventListener("load", () => {
-  const el = document.getElementById("typewriter");
-  if (!el) return;
 
-  const text = "Shovan Kar";
-  let index = 0;
-  el.textContent = "";
+  //  const openModal = document.getElementById('openModal');
+  // const closeModal = document.getElementById('closeModal');
+  // const contactModal = document.getElementById('contactModal');
 
-  function type() {
-    if (index < text.length) {
-      el.textContent += text[index];
-      index++;
-      setTimeout(type, 120);
-    }
-  }
+  // openModal.addEventListener('click', () => {
+  //   contactModal.classList.remove('hidden');
+  //   contactModal.classList.add('flex');
+  // });
 
-  type();
-});
+  // closeModal.addEventListener('click', () => {
+  //   contactModal.classList.add('hidden');
+  //   contactModal.classList.remove('flex');
+  // });
 
+  // // Close on background click
+  // contactModal.addEventListener('click', (e) => {
+  //   if (e.target === contactModal) {
+  //     contactModal.classList.add('hidden');
+  //     contactModal.classList.remove('flex');
+  //   }
+  // });
