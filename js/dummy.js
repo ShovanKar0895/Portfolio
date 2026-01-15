@@ -1,28 +1,84 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // const header = document.querySelector("header");
+window.addEventListener("load", () => {
+  const preloader = document.getElementById("preloader");
+  if (!preloader) return;
 
-  const header = document.getElementById("site-header");
+  preloader.style.opacity = "0";
+  preloader.style.visibility = "hidden";
 
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 40) {
-    header.classList.add("shadow-xl", "bg-[#0d1117]/95");
-  } else {
-    header.classList.remove("shadow-xl", "bg-[#0d1117]/95");
+  setTimeout(() => {
+    preloader.remove();
+  }, 400);
+});
+
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   // const header = document.querySelector("header");
+
+//   const header = document.getElementById("site-header");
+
+// window.addEventListener("scroll", () => {
+//   if (window.scrollY > 40) {
+//     header.classList.add("shadow-xl", "bg-[#0d1117]/95");
+//   } else {
+//     header.classList.remove("shadow-xl", "bg-[#0d1117]/95");
+//   }
+// });
+
+// });
+
+// window.addEventListener("load", () => {
+//   const el = document.getElementById("typewriter");
+//   if (!el) return;
+
+//   const text = el.dataset.text;
+//   let index = 0;
+
+//   el.textContent = "";
+
+//   function type() {
+//     if (index < text.length) {
+//       el.textContent += text[index++];
+//       setTimeout(type, 90);
+//     }
+//   }
+
+//   type();
+// });
+
+window.addEventListener("load", () => {
+  const container = document.getElementById("typewriter");
+  if (!container) return;
+
+  const text = container.dataset.text;
+  const textEl = container.querySelector(".typed-text");
+
+  let index = 0;
+  textEl.textContent = "";
+
+  function type() {
+    if (index < text.length) {
+      textEl.textContent += text.charAt(index++);
+      const delay = 80 + Math.random() * 60; // realistic typing
+      setTimeout(type, delay);
+    }
   }
+
+  setTimeout(type, 400);
 });
 
-});
 
 
 
-// Lottie loader
-lottie.loadAnimation({
-  container: document.getElementById("lottie-loader"),
-  renderer: "svg",
-  loop: true,
-  autoplay: true,
-  path: "https://assets10.lottiefiles.com/packages/lf20_kyu7xb1v.json"
-});
+
+
+// // Lottie loader
+// lottie.loadAnimation({
+//   container: document.getElementById("lottie-loader"),
+//   renderer: "svg",
+//   loop: true,
+//   autoplay: true,
+//   path: "https://assets10.lottiefiles.com/packages/lf20_kyu7xb1v.json"
+// });
 
 // Fade out preloader once page fully loads
 window.addEventListener("load", () => {
@@ -80,22 +136,22 @@ var swiper = new Swiper(".mySwiper", {
     },
   });
 
-window.addEventListener("load", () => {
-  const el = document.getElementById("typewriter");
-  if (!el) return;
+// window.addEventListener("load", () => {
+//   const el = document.getElementById("typewriter");
+//   if (!el) return;
 
-  const text = "Shovan Kar";
-  let index = 0;
-  el.textContent = "";
+//   const text = "Shovan Kar";
+//   let index = 0;
+//   el.textContent = "";
 
-  function type() {
-    if (index < text.length) {
-      el.textContent += text[index];
-      index++;
-      setTimeout(type, 120);
-    }
-  }
+//   function type() {
+//     if (index < text.length) {
+//       el.textContent += text[index];
+//       index++;
+//       setTimeout(type, 120);
+//     }
+//   }
 
-  type();
-});
+//   type();
+// });
 

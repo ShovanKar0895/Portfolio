@@ -8,11 +8,11 @@ html {
   scroll-behavior: smooth;
 }
 
-/* #typewriter {
+#typewriter {
   display: inline-block;
   white-space: nowrap;
   font-weight: 700;
-} */
+}
 
 .hero-button {
   position: relative;
@@ -32,9 +32,7 @@ html {
   left: 100%;
 }
 
-
-
-/* #preloader {
+#preloader {
   transition: opacity 0.6s ease-in-out;
 }
 
@@ -46,26 +44,7 @@ html {
     0 0 40px #4f46e5,
     0 0 80px #4f46e5;
   animation: flicker 2s infinite alternate;
-} */
-
-@keyframes loading-line {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
 }
-
-.animate-loading-line {
-  animation: loading-line 1.2s ease-in-out infinite;
-}
-
-/* Smooth exit */
-#preloader {
-  transition: opacity 0.4s ease, visibility 0.4s ease;
-}
-
 
 @keyframes flicker {
   0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
@@ -75,48 +54,6 @@ html {
     opacity: 0.6;
   }
 }
-
-.nav-link {
-  letter-spacing: 0.02em;
-}
-
-[x-cloak] {
-  display: none !important;
-}
-
-.cursor {
-  display: inline-block;
-  color: #a5b4fc;
-  animation: blink 1s step-start infinite;
-}
-
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-a {
-  transition-delay: 20ms;
-}
-
-.hero-svg {
-  height: 100%;
-  transform: scaleY(1.12);   /* KEY VALUE */
-  transform-origin: top;
-  will-change: transform;
-}
-
-/* Extra safety for very small screens */
-@media (max-height: 700px) {
-  .hero-svg {
-    transform: scaleY(1.05);
-  }
-}
-
-
-
-
 
 .skill-card {
     @apply p-4 rounded-lg shadow-md w-32 text-center transform transition;

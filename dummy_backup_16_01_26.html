@@ -2,314 +2,151 @@
 <html lang="en">
 
 <head>
-  <!-- Basic -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- Primary SEO -->
-  <title>Shovan Kar | Backend Engineer & Full-Stack Developer | IIT Madras</title>
-  <meta name="description"
-    content="Shovan Kar is a backend-focused software engineer with 4+ years of experience building scalable APIs, cloud-native systems, and data-driven applications. IIT Madras BS in Data Science." />
-  <meta name="author" content="Shovan Kar" />
-
-  <!-- Indexing -->
-  <meta name="robots" content="index, follow" />
-  <meta name="googlebot" content="index, follow" />
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://shovankar.com/" />
-
-  <!-- Language / Region -->
-  <meta http-equiv="content-language" content="en-IN" />
-
-  <!-- Open Graph (LinkedIn / WhatsApp / Facebook) -->
-  <meta property="og:type" content="website" />
-  <meta property="og:site_name" content="Shovan Kar" />
-  <meta property="og:title" content="Shovan Kar | Backend Engineer & Full-Stack Developer" />
-  <meta property="og:description"
-    content="Backend-focused software engineer building scalable APIs, cloud-native systems, and data-driven applications. IIT Madras." />
-  <meta property="og:url" content="https://shovankar.com/" />
-  <meta property="og:image" content="https://shovankar.com/og-image.png" />
-
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Shovan Kar | Backend Engineer" />
-  <meta name="twitter:description"
-    content="4+ years building scalable backend systems, APIs, and cloud-native applications. IIT Madras." />
-  <meta name="twitter:image" content="https://shovankar.com/og-image.png" />
-
-  <!-- Structured Data (Google Entity Recognition) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "name": "Shovan Kar",
-    "url": "https://shovankar.com",
-    "jobTitle": "Backend Engineer & Full-Stack Developer",
-    "alumniOf": {
-      "@type": "CollegeOrUniversity",
-      "name": "Indian Institute of Technology Madras"
-    },
-    "sameAs": [
-      "https://www.linkedin.com/in/YOUR-LINKEDIN",
-      "https://github.com/YOUR-GITHUB"
-    ],
-    "knowsAbout": [
-      "Backend Development",
-      "System Design",
-      "REST APIs",
-      "Cloud Computing",
-      "Data Engineering",
-      "Data Science"
-    ]
-  }
-  </script>
-
-  <!-- Performance Hints -->
-  <link rel="preconnect" href="https://cdn.tailwindcss.com" />
-  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
-  <link rel="preconnect" href="https://cdnjs.cloudflare.com" />
-
-   <!-- Favicons -->
-  <link rel="icon" type="image/png" href="img/favicon/favicon-96x96.png" sizes="96x96" />
-  <link rel="icon" type="image/svg+xml" href="img/favicon/favicon.svg" />
-  <link rel="shortcut icon" href="img/favicon/favicon.ico" />
-  <link rel="apple-touch-icon" sizes="180x180" href="img/favicon/apple-touch-icon.png" />
-  <link rel="manifest" href="img/favicon/site.webmanifest" />
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shovan's Portfolio</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-
   <!-- Alpine.js -->
-  <!-- <script src="https://unpkg.com/alpinejs" defer></script> -->
-   <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+  <script src="https://unpkg.com/alpinejs" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 
-
-  <!-- Swiper -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
 
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <!-- Custom CSS -->
-  <link rel="stylesheet" href="css/dummy.css" />
-
+  <link rel="stylesheet" href="css/dummy.css">
   <!-- Custom JS -->
   <script src="js/dummy.js" defer></script>
 </head>
 
-
 <body class="font-mono bg-gray-900 text-white">
 
 
-  <!-- Minimal Preloader -->
-  <div id="preloader"
-    class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0d1117]">
-
-    <div class="flex flex-col items-center gap-4">
-      <!-- Name / Monogram -->
-      <div class="text-2xl font-semibold tracking-wide text-indigo-400">
+  <!-- Preloader -->
+  <!-- <div id="preloader" class="fixed inset-0 flex items-center justify-center z-50 bg-gradient-to-br from-indigo-900 via-indigo-700 to-purple-900">
+  <div class="flex flex-col items-center space-y-6 relative">
+    <div class="absolute inset-0 animate-pulse opacity-40 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 blur-3xl"></div>
+    <div class="flex items-center space-x-4 relative">
+      <img src="img/Untitled design (2).svg" alt="Logo" class="w-16 h-16 animate-bounce drop-shadow-2xl">
+      <h1 class="text-5xl font-extrabold text-white tracking-wide animate-bounce drop-shadow-lg neon-glow">
         SK
+      </h1>
+    </div>
+    <div id="lottie-loader" class="relative w-20 h-20"></div>
+    <p class="text-gray-200 font-medium animate-pulse">Preparing Awesomeness...</p>
+  </div>
+</div> -->
+
+
+
+
+  <!-- Header -->
+  <header id="site-header"
+    class="fixed top-0 left-0 w-full z-50 transition-all duration-300 bg-[#0d1117]/80 backdrop-blur border-b border-gray-800"
+    x-data="{ open: false }">
+
+    <div class="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
+
+      <!-- Logo / Name -->
+      <div class="text-2xl font-bold text-white">
+        <span id="typewriter"></span>
       </div>
 
-      <!-- Loading line -->
-      <div class="w-40 h-[2px] bg-gray-800 overflow-hidden rounded">
-        <div class="h-full w-full bg-indigo-500 animate-loading-line"></div>
+      <!-- Desktop Nav -->
+      <nav class="hidden md:flex space-x-6">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Hamburger -->
+      <button @click="open = !open"
+        class="md:hidden text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div x-show="open" x-transition @click.outside="open = false"
+      class="md:hidden bg-[#0d1117]/95 backdrop-blur border-t border-gray-800">
+      <nav class="flex flex-col items-center py-6 space-y-4">
+        <a @click="open=false" href="#about" class="nav-link">About</a>
+        <a @click="open=false" href="#skills" class="nav-link">Skills</a>
+        <a @click="open=false" href="#projects" class="nav-link">Projects</a>
+        <a @click="open=false" href="#testimonials" class="nav-link">Testimonials</a>
+        <a @click="open=false" href="#contact" class="nav-link">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section id="hero"
+    class="relative safe-vh flex items-center justify-center px-6 bg-gradient-to-r from-[#0d1117] via-[#161b22] to-[#0d1117] overflow-hidden">
+
+    <!-- Decorative SVG (non-interactive) -->
+    <svg class="absolute inset-0 w-full h-full opacity-10 hidden md:block pointer-events-none"
+      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice">
+      <!-- (your SVG unchanged) -->
+      <g fill="none" stroke="#ffffff" stroke-width="0.5">
+        <text x="50" y="100" font-size="20" fill="#ffffff" opacity="0.6">01010101 10101010</text>
+        <text x="50" y="130" font-size="20" fill="#ffffff" opacity="0.6">11001010 10010100</text>
+        <text x="50" y="160" font-size="20" fill="#ffffff" opacity="0.6">01110101 01010101</text>
+        <rect x="200" y="150" width="150" height="60" stroke="#ffffff" />
+        <text x="220" y="190" font-size="16" fill="#ffffff">Start</text>
+        <rect x="400" y="150" width="200" height="60" stroke="#ffffff" />
+        <text x="420" y="190" font-size="16" fill="#ffffff">Initialize Variables</text>
+        <rect x="650" y="150" width="150" height="60" stroke="#ffffff" />
+        <text x="670" y="190" font-size="16" fill="#ffffff">End</text>
+        <path d="M350 180 L400 180" stroke="#ffffff" />
+        <path d="M600 180 L650 180" stroke="#ffffff" />
+        <path d="M300 250 Q250 350 300 450M700 250 Q750 350 700 450" stroke-width="1" />
+        <path d="M150 400 H850" />
+        <circle cx="300" cy="400" r="8" fill="#ffffff" />
+        <circle cx="600" cy="400" r="8" fill="#ffffff" />
+        <path d="M300 400 V500" />
+        <path d="M600 400 V500" />
+        <circle cx="300" cy="500" r="8" fill="#ffffff" />
+        <circle cx="600" cy="500" r="8" fill="#ffffff" />
+        <polygon points="400,450 450,500 400,550" fill="none" stroke="#ffffff" stroke-width="1" />
+        <polygon points="500,450 550,500 500,550" fill="none" stroke="#ffffff" stroke-width="1" />
+        <circle cx="850" cy="450" r="40" stroke="#ffffff" />
+        <path d="M850 410 L850 490M810 450 L890 450" stroke="#ffffff" />
+        <circle cx="850" cy="450" r="20" fill="none" stroke="#ffffff" />
+      </g>
+    </svg>
+
+    <!-- Hero Content -->
+    <div class="relative text-center max-w-2xl z-10">
+      <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
+        Hello, I'm <span class="text-indigo-400">Shovan</span>
+      </h1>
+
+      <p class="mt-5 text-base sm:text-lg md:text-xl text-gray-300">
+        A full-stack developer turning complex problems into simple, scalable solutions.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#projects" class="hero-button px-6 py-3 bg-indigo-600 rounded-lg font-medium
+               hover:bg-indigo-500 transition-all hover:scale-105
+               focus:outline-none focus:ring-2 focus:ring-indigo-400">
+          View My Work
+        </a>
+
+        <a href="#contact" class="hero-button px-6 py-3 border border-white/70 rounded-lg font-medium
+               hover:bg-white hover:text-indigo-600 transition-all hover:scale-105
+               focus:outline-none focus:ring-2 focus:ring-indigo-400">
+          Contact Me
+        </a>
       </div>
     </div>
-  </div>
-
-
-  <header
-  id="site-header"
-  x-data="{ open: false }"
-  class="fixed top-0 left-0 w-full z-50
-         bg-[#0d1117]/90 backdrop-blur border-b border-gray-800">
-
-  <div class="max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
-
-    <!-- Name -->
-    <!-- <div class="text-lg sm:text-xl font-semibold tracking-wide text-white">
-      <span id="typewriter" data-text="Shovan Kar">Shovan Kar</span>
-    </div> -->
-    <div class="text-lg sm:text-xl font-semibold tracking-wide text-white">
-      <span id="typewriter" data-text="Shovan Kar">
-        <span class="typed-text"></span><span class="cursor">|</span>
-      </span>
-    </div>
-
-
-    <!-- Desktop Nav -->
-    <nav class="hidden md:flex items-center space-x-6 lg:space-x-8 xl:space-x-10">
-      <a href="#about" class="nav-link">About</a>
-      <a href="#skills" class="nav-link">Skills</a>
-      <a href="#projects" class="nav-link">Projects</a>
-      <a href="#testimonials" class="nav-link">Testimonials</a>
-      <a href="#contact" class="nav-link">Contact</a>
-    </nav>
-
-    <!-- Hamburger -->
-    <button
-      @click="open = !open"
-      aria-label="Toggle navigation menu"
-      class="md:hidden p-2 -mr-2 text-white
-             focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded">
-      <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-          d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>
-    </button>
-  </div>
-
-  <!-- ✅ MOBILE MENU (must be INSIDE header + x-data scope) -->
-  <div
-  x-cloak
-  x-show="open"
-  x-transition
-  @click.outside="open = false"
-  class="md:hidden bg-[#0d1117]/95 backdrop-blur border-t border-gray-800">
-
-    <nav class="flex flex-col items-center py-6 space-y-5">
-      <a @click="open = false" href="#about" class="nav-link">About</a>
-      <a @click="open = false" href="#skills" class="nav-link">Skills</a>
-      <a @click="open = false" href="#projects" class="nav-link">Projects</a>
-      <a @click="open = false" href="#testimonials" class="nav-link">Testimonials</a>
-      <a @click="open = false" href="#contact" class="nav-link">Contact</a>
-    </nav>
-  </div>
-</header>
-
-
-<section
-  id="hero"
-  class="relative
-         min-h-[72svh] md:min-h-[82svh]
-         pt-[72px] sm:pt-[80px]
-         flex items-center justify-center px-6
-         bg-gradient-to-r from-[#0d1117] via-[#161b22] to-[#0d1117]
-         overflow-hidden">
-
-  <!-- SVG BACKGROUND -->
-  <svg
-  class="absolute left-0 top-[-12%] w-full
-         opacity-[0.06] md:opacity-10
-         pointer-events-none hero-svg"
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 1000 600"
-  preserveAspectRatio="xMidYMid meet">
-
-
-    <g fill="none" stroke="#ffffff" stroke-width="0.5">
-
-      <!-- Binary -->
-      <text x="50" y="100" font-size="20" opacity="0.6">01010101 10101010</text>
-      <text x="50" y="130" font-size="20" opacity="0.6">11001010 10010100</text>
-      <text x="50" y="160" font-size="20" opacity="0.6">01110101 01010101</text>
-
-      <!-- Flow -->
-      <rect x="200" y="150" width="150" height="60" />
-      <text x="220" y="190" font-size="16">Start</text>
-
-      <rect x="400" y="150" width="200" height="60" />
-      <text x="420" y="190" font-size="16">Initialize</text>
-
-      <rect x="650" y="150" width="150" height="60" />
-      <text x="680" y="190" font-size="16">End</text>
-
-      <path d="M350 180 L400 180" />
-      <path d="M600 180 L650 180" />
-
-      <!-- Curves -->
-      <path d="M300 250 Q250 350 300 450" />
-      <path d="M700 250 Q750 350 700 450" />
-
-      <path d="M150 400 H850" />
-
-      <circle cx="300" cy="400" r="8" />
-      <circle cx="600" cy="400" r="8" />
-
-      <path d="M300 400 V500" />
-      <path d="M600 400 V500" />
-
-      <circle cx="300" cy="500" r="8" />
-      <circle cx="600" cy="500" r="8" />
-
-      <!-- OP AMP (NOW VISIBLE) -->
-      <circle cx="850" cy="450" r="40" />
-      <path d="M850 410 L850 490 M810 450 L890 450" />
-      <circle cx="850" cy="450" r="20" />
-
-    </g>
-  </svg>
-
-  <!-- HERO CONTENT -->
-  <div class="relative z-10 text-center max-w-2xl">
-
-    <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold leading-tight">
-      Hello, I'm
-      <span
-        class="relative inline-block group text-indigo-400
-               transition-colors duration-300 ease-out
-               hover:text-indigo-300">
-
-        Shovan
-
-        <!-- underline -->
-        <span
-          class="absolute left-0 -bottom-2 w-full h-[2px]
-                 bg-gradient-to-r from-indigo-400 to-purple-500
-                 origin-left scale-x-0
-                 transition-transform duration-300 ease-out
-                 group-hover:scale-x-100">
-        </span>
-      </span>
-    </h1>
-
-    <p class="mt-5 text-sm sm:text-base md:text-xl text-gray-300 leading-relaxed">
-      A backend-focused full-stack developer turning complex problems into
-      simple, scalable systems.
-    </p>
-
-    <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-
-      <!-- Primary -->
-      <a
-        href="#projects"
-        class="group relative inline-flex items-center justify-center
-               px-7 py-3 rounded-lg font-medium text-white
-               bg-gradient-to-r from-indigo-600 to-purple-600
-               transition-all duration-300 ease-out
-               hover:from-indigo-500 hover:to-purple-500
-               focus:outline-none focus:ring-2 focus:ring-indigo-400">
-
-        <span class="relative z-10">View My Work</span>
-        <span
-          class="absolute inset-0 rounded-lg opacity-0
-                 bg-indigo-400/20 blur-xl
-                 transition-opacity duration-300
-                 group-hover:opacity-100">
-        </span>
-      </a>
-
-      <!-- Secondary -->
-      <a
-        href="#contact"
-        class="inline-flex items-center justify-center
-               px-7 py-3 rounded-lg font-medium
-               border border-white/30 text-gray-200
-               transition-colors duration-250 ease-out
-               hover:border-indigo-400 hover:text-white
-               hover:bg-white/5
-               focus:outline-none focus:ring-2 focus:ring-indigo-400">
-        Contact Me
-      </a>
-
-    </div>
-  </div>
-</section>
-
-
+  </section>
 
   <!-- About Section -->
 <section id="about"
