@@ -1,3 +1,9 @@
+// Auto-update copyright year
+document.addEventListener("DOMContentLoaded", () => {
+  const yearEl = document.getElementById("copyrightYear");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+});
+
 window.addEventListener("load", () => {
   const preloader = document.getElementById("preloader");
   if (!preloader) return;
@@ -167,50 +173,30 @@ document.addEventListener("DOMContentLoaded", () => {
   startAutoSlide();
 });
 
-// Academic Modal: Scroll-linked milestone navigation
-document.addEventListener("DOMContentLoaded", () => {
-  const scrollContainer = document.getElementById("academicScroll");
-  const navContainer = document.getElementById("academicNav");
-  if (!scrollContainer || !navContainer) return;
+// Academic Modal: Scroll-linked active milestone tracking
+// Exposed globally so Alpine @scroll can call it directly
+window.updateAcademicMilestone = function (scrollEl) {
+  const milestones = scrollEl.querySelectorAll(".academic-milestone");
+  if (!milestones.length) return;
 
-  const navButtons = navContainer.querySelectorAll(".academic-nav-btn");
-  const milestones = scrollContainer.querySelectorAll(".academic-milestone");
+  const containerTop = scrollEl.scrollTop;
+  const containerHeight = scrollEl.clientHeight;
+  let activeIndex = 0;
 
-  // Click navigation: scroll to milestone
-  navButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const targetId = btn.getAttribute("data-milestone");
-      const target = document.getElementById(targetId);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-      }
-    });
+  milestones.forEach((milestone, index) => {
+    const milestoneTop = milestone.offsetTop - milestones[0].offsetTop;
+    if (containerTop >= milestoneTop - containerHeight * 0.35) {
+      activeIndex = index;
+    }
   });
 
-  // Scroll-linked highlighting
-  function updateActiveNav() {
-    const containerTop = scrollContainer.scrollTop;
-    const containerHeight = scrollContainer.clientHeight;
-    let activeIndex = 0;
-
-    milestones.forEach((milestone, index) => {
-      const milestoneTop = milestone.offsetTop - scrollContainer.offsetTop;
-      if (containerTop >= milestoneTop - containerHeight * 0.3) {
-        activeIndex = index;
-      }
-    });
-
-    navButtons.forEach((btn, index) => {
-      if (index === activeIndex) {
-        btn.classList.add("active");
-      } else {
-        btn.classList.remove("active");
-      }
-    });
+  const aboutSection = document.getElementById("about");
+  if (!aboutSection) return;
+  const data = Alpine.$data(aboutSection);
+  if (data && data.activeMilestone !== activeIndex) {
+    data.activeMilestone = activeIndex;
   }
-
-  scrollContainer.addEventListener("scroll", updateActiveNav, { passive: true });
-});
+};
 
 // Projects Drag Support
 document.addEventListener("DOMContentLoaded", () => {
@@ -266,49 +252,76 @@ document.addEventListener("DOMContentLoaded", () => {
   sections.forEach((section) => observer.observe(section));
 });
 
-// Testimonials Drag Interaction
+// Testimonials: rAF auto-scroll with mouse + touch drag
 document.addEventListener("DOMContentLoaded", () => {
   const strip = document.getElementById("testimonialStrip");
   if (!strip) return;
 
+  let position = 0;
+  const speed = 0.4;
   let isDragging = false;
-  let startX = 0;
-  let currentTranslate = 0;
+  let isPaused = false;
+  let dragStartX = 0;
+  let dragStartPos = 0;
 
-  function getTranslateX() {
-    const style = window.getComputedStyle(strip);
-    const matrix = new DOMMatrixReadOnly(style.transform);
-    return matrix.m41;
+  function getHalfWidth() {
+    return strip.scrollWidth / 2;
   }
 
-  function onDragStart(e) {
+  function normalizePosition() {
+    const half = getHalfWidth();
+    if (half <= 0) return;
+    while (position > 0) position -= half;
+    while (position < -half) position += half;
+  }
+
+  function animate() {
+    if (!isDragging && !isPaused) {
+      position -= speed;
+      normalizePosition();
+    }
+    strip.style.transform = "translateX(" + position + "px)";
+    requestAnimationFrame(animate);
+  }
+
+  // Mouse drag
+  strip.addEventListener("mousedown", (e) => {
     isDragging = true;
-    startX = e.type === "touchstart" ? e.touches[0].clientX : e.clientX;
-    currentTranslate = getTranslateX();
-    strip.style.animationPlayState = "paused";
-    strip.style.cursor = "grabbing";
-  }
+    dragStartX = e.clientX;
+    dragStartPos = position;
+  });
 
-  function onDragMove(e) {
+  window.addEventListener("mousemove", (e) => {
     if (!isDragging) return;
-    const x = e.type === "touchmove" ? e.touches[0].clientX : e.clientX;
-    const diff = x - startX;
-    strip.style.transform = `translateX(${currentTranslate + diff}px)`;
-  }
+    position = dragStartPos + (e.clientX - dragStartX);
+    normalizePosition();
+  });
 
-  function onDragEnd() {
-    if (!isDragging) return;
+  window.addEventListener("mouseup", () => {
     isDragging = false;
-    strip.style.cursor = "";
-    strip.style.removeProperty("transform");
-    strip.style.animationPlayState = "";
-  }
+  });
 
-  strip.addEventListener("mousedown", onDragStart);
-  strip.addEventListener("mousemove", onDragMove);
-  strip.addEventListener("mouseup", onDragEnd);
-  strip.addEventListener("mouseleave", onDragEnd);
-  strip.addEventListener("touchstart", onDragStart, { passive: true });
-  strip.addEventListener("touchmove", onDragMove, { passive: true });
-  strip.addEventListener("touchend", onDragEnd);
+  // Touch drag
+  strip.addEventListener("touchstart", (e) => {
+    isDragging = true;
+    dragStartX = e.touches[0].clientX;
+    dragStartPos = position;
+  }, { passive: true });
+
+  window.addEventListener("touchmove", (e) => {
+    if (!isDragging) return;
+    position = dragStartPos + (e.touches[0].clientX - dragStartX);
+    normalizePosition();
+  }, { passive: true });
+
+  window.addEventListener("touchend", () => {
+    isDragging = false;
+  });
+
+  // Hover pause
+  const wrapper = strip.parentElement;
+  wrapper.addEventListener("mouseenter", () => { isPaused = true; });
+  wrapper.addEventListener("mouseleave", () => { if (!isDragging) isPaused = false; });
+
+  requestAnimationFrame(animate);
 });

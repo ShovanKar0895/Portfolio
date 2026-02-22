@@ -306,7 +306,27 @@
 
 <!-- About Section -->
 <section id="about"
-  x-data="{ showAcademicModal: false }"
+  x-data="{
+    showAcademicModal: false,
+    activeMilestone: 0,
+    previewOpen: false,
+    previewItem: null,
+    attachments: {
+      1: [],
+      2: [
+        { type: 'pdf', src: 'docs/academics/asp-publication.pdf', label: 'ASP Research Paper' },
+        { type: 'image', src: 'img/academics/kriti-award.jpg', label: 'Kriti Award' }
+      ],
+      3: [
+        { type: 'pdf', src: 'docs/academics/gate-scorecard.pdf', label: 'GATE Scorecard' }
+      ],
+      4: [
+        { type: 'pdf', src: 'docs/academics/iitm-enrollment.pdf', label: 'IIT Madras Enrollment' }
+      ]
+    },
+    openPreview(item) { this.previewItem = item; this.previewOpen = true; },
+    closePreview() { this.previewOpen = false; this.previewItem = null; }
+  }"
   class="fade-section relative py-20 bg-gradient-to-b from-[#0b1220] via-[#0f172a] to-[#0b1220] overflow-hidden">
 
   <!-- Ambient top glow -->
@@ -346,10 +366,8 @@
         </p>
 
         <p class="text-sm sm:text-[1.05rem] leading-relaxed text-gray-300">
-          With the global acceleration of AI and machine learning adoption, I have developed
-          strong interest in model optimization, Retrieval-Augmented Generation (RAG), LLM
-          integrations, embedding pipelines, vector databases, intelligent automation systems,
-          and AI-driven backend orchestration.
+          I'm also deeply invested in <span class="text-indigo-400 font-semibold">AI and machine learning</span>
+          — bridging backend engineering with intelligent systems to build smarter, data-driven applications.
         </p>
 
         <p class="text-sm sm:text-[1.05rem] leading-relaxed text-gray-300">
@@ -413,18 +431,6 @@
             <p class="text-xs text-gray-400">Projects</p>
           </div>
 
-          <div
-            class="stat-card-hover flex-1 min-w-[100px] sm:min-w-[140px] rounded-2xl
-                   bg-gradient-to-br from-gray-800/80 to-gray-900/80
-                   border border-gray-700
-                   px-4 sm:px-6 py-4 sm:py-5
-                   transition-all duration-300 ease-out
-                   hover:-translate-y-3 hover:scale-110
-                   hover:border-pink-500/50
-                   hover:shadow-2xl hover:shadow-pink-500/30">
-            <p class="text-xl sm:text-2xl font-bold text-pink-400">2×</p>
-            <p class="text-xs text-gray-400">IIT Programs</p>
-          </div>
 
         </div>
       </div>
@@ -432,7 +438,7 @@
       <!-- SIGNATURE VISUAL (WOW ANCHOR) -->
       <div class="flex justify-center md:justify-end">
         <div
-          class="relative w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-3xl
+          class="logo-visual group relative w-48 h-48 md:w-56 md:h-56 lg:w-72 lg:h-72 rounded-3xl
                  border border-indigo-500/40
                  bg-gradient-to-br from-[#0f172a] to-[#020617]
                  shadow-[0_0_60px_rgba(99,102,241,0.25)]
@@ -447,6 +453,9 @@
 
           <div class="absolute inset-0 rounded-3xl
                       bg-gradient-to-t from-black/40 to-transparent"></div>
+
+          <!-- Logo tooltip -->
+          <span class="logo-tooltip">Encapsulating curiosity inside computation.</span>
         </div>
       </div>
 
@@ -455,11 +464,11 @@
 
   <!-- Academic Details Modal -->
   <div x-show="showAcademicModal" x-cloak
-       class="fixed inset-0 z-50 flex items-center justify-center px-4"
-       @keydown.escape.window="showAcademicModal = false">
+       class="fixed inset-0 z-50 flex items-center justify-center"
+       @keydown.escape.window="previewOpen ? closePreview() : (showAcademicModal = false)">
 
     <!-- Overlay -->
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+    <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"
          @click="showAcademicModal = false"
          x-transition:enter="transition ease-out duration-300"
          x-transition:enter-start="opacity-0"
@@ -468,123 +477,281 @@
          x-transition:leave-start="opacity-100"
          x-transition:leave-end="opacity-0"></div>
 
-    <!-- Modal Content -->
-    <div class="relative w-full max-w-4xl max-h-[85vh] overflow-hidden
-                bg-[#0f172a] border border-gray-700/50 rounded-xl sm:rounded-2xl
-                shadow-2xl shadow-indigo-500/10"
+    <!-- Modal Panel -->
+    <div class="relative z-10 w-[calc(100%-2rem)] sm:w-[calc(100%-3rem)] max-w-3xl
+                max-h-[88vh] sm:max-h-[84vh]
+                flex flex-col
+                bg-gradient-to-b from-[#0f172a] to-[#0b1120]
+                border border-gray-700/40 rounded-2xl
+                shadow-[0_0_80px_rgba(99,102,241,0.12)]"
          x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 scale-95"
-         x-transition:enter-end="opacity-100 scale-100"
+         x-transition:enter-start="opacity-0 scale-95 translate-y-4"
+         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
          x-transition:leave="transition ease-in duration-200"
          x-transition:leave-start="opacity-100 scale-100"
          x-transition:leave-end="opacity-0 scale-95">
 
-      <!-- Close Button -->
-      <button @click="showAcademicModal = false"
-              class="absolute top-4 right-4 z-10 text-gray-400 hover:text-white transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-
-      <!-- Header -->
-      <div class="px-4 pt-4 sm:px-6 sm:pt-6 md:px-8 md:pt-8 pb-4">
-        <h3 class="text-xl sm:text-2xl font-bold">
-          <span class="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-            Academic Journey
-          </span>
-        </h3>
+      <!-- Header (fixed within modal) -->
+      <div class="flex-shrink-0 px-5 pt-5 sm:px-7 sm:pt-7 pb-4 border-b border-gray-700/30">
+        <div class="flex items-center justify-between">
+          <div>
+            <h3 class="text-xl sm:text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent">
+              Academic Journey
+            </h3>
+            <p class="text-xs sm:text-sm text-gray-500 mt-1">Key milestones and achievements</p>
+          </div>
+          <button @click="showAcademicModal = false"
+                  class="flex-shrink-0 w-8 h-8 flex items-center justify-center rounded-lg
+                         bg-gray-800/60 text-gray-400 hover:text-white hover:bg-gray-700/60
+                         transition-all duration-200">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+          </button>
+        </div>
       </div>
 
-      <!-- Two-column layout (md+) / Single column (mobile) -->
-      <div class="flex flex-col md:flex-row">
+      <!-- Scrollable milestone content -->
+      <div class="flex-1 overflow-y-auto academic-modal-scroll academic-scroll-mobile"
+           @scroll="window.updateAcademicMilestone($event.target)">
+        <div class="px-5 py-5 sm:px-7 sm:py-6 space-y-4">
 
-        <!-- Left: Sticky milestone navigation (hidden on mobile) -->
-        <nav id="academicNav" class="hidden md:flex flex-col w-48 flex-shrink-0 px-6 pb-6 sticky top-0 self-start">
-          <button data-milestone="milestone-1"
-                  class="academic-nav-btn active text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 mb-1">
-            2013 -- Foundations
-          </button>
-          <button data-milestone="milestone-2"
-                  class="academic-nav-btn text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 mb-1">
-            2017 -- Undergraduate
-          </button>
-          <button data-milestone="milestone-3"
-                  class="academic-nav-btn text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 mb-1">
-            2020 -- GATE AIR 257
-          </button>
-          <button data-milestone="milestone-4"
-                  class="academic-nav-btn text-left px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 mb-1">
-            IIT Madras BS
-          </button>
-        </nav>
-
-        <!-- Right: Scrollable content -->
-        <div id="academicScroll" class="flex-1 overflow-y-auto academic-modal-scroll academic-scroll-mobile px-4 pb-4 sm:px-6 sm:pb-6 md:px-8 md:pb-8 max-h-[calc(85vh-100px)]">
-          <div class="academic-timeline-content relative pl-6 sm:pl-8 space-y-6 sm:space-y-8">
-            <!-- Vertical line -->
-            <div class="academic-timeline-line absolute left-2 sm:left-3 top-2 bottom-2 w-px bg-gradient-to-b from-indigo-500/60 via-purple-500/40 to-indigo-500/20"></div>
-
-            <!-- Milestone 1: 2013 -- Foundations -->
-            <div id="milestone-1" class="relative academic-milestone">
-              <div class="academic-milestone-dot absolute -left-4 sm:-left-5 top-1 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-indigo-500 border-2 border-indigo-300 shadow-lg shadow-indigo-500/40"></div>
-              <span class="inline-block px-3 py-1 text-xs font-semibold bg-indigo-500/20 text-indigo-300 rounded-full mb-2">2013</span>
-              <h4 class="text-lg font-semibold text-white">Foundations</h4>
-              <ul class="mt-2 space-y-1 text-sm text-gray-400">
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Strong interest in Science and Mathematics</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Consistent topper at school and regional level</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Early coding interest</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Strong analytical mindset</li>
-              </ul>
-            </div>
-
-            <!-- Milestone 2: 2017 -- Undergraduate Journey -->
-            <div id="milestone-2" class="relative academic-milestone">
-              <div class="academic-milestone-dot absolute -left-4 sm:-left-5 top-1 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-purple-500 border-2 border-purple-300 shadow-lg shadow-purple-500/40"></div>
-              <span class="inline-block px-3 py-1 text-xs font-semibold bg-purple-500/20 text-purple-300 rounded-full mb-2">2017</span>
-              <h4 class="text-lg font-semibold text-white">Undergraduate Journey</h4>
-              <p class="text-gray-300 text-sm mt-1">Bachelor's in Electronics and Instrumentation Engineering</p>
-              <p class="text-gray-400 text-sm mt-2 font-medium">Focus: Circuit Design, Signal Processing, Sensors & Embedded Systems</p>
-              <p class="text-gray-400 text-xs mt-3 uppercase tracking-wider font-semibold">Highlights</p>
-              <ul class="mt-2 space-y-1 text-sm text-gray-400">
-                <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">&#9679;</span> Led "Microcontroller-Based Dual Axis Solar Tracking System"</li>
-                <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">&#9679;</span> Research published at American Scientific Publishers (ASP)</li>
-                <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">&#9679;</span> Mastered C++ and Python (Arduino Uno & Raspberry Pi)</li>
-                <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">&#9679;</span> Academic Excellence Award (2014)</li>
-                <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">&#9679;</span> Topped college and university stream</li>
-                <li class="flex items-start gap-2"><span class="text-purple-400 mt-0.5">&#9679;</span> Distinguished Alumni -- Kriti Award (2019)</li>
-              </ul>
-            </div>
-
-            <!-- Milestone 3: 2020 -- GATE AIR 257 -->
-            <div id="milestone-3" class="relative academic-milestone">
-              <div class="academic-milestone-dot absolute -left-4 sm:-left-5 top-1 w-3.5 h-3.5 sm:w-4 sm:h-4 rounded-full bg-indigo-500 border-2 border-indigo-300 shadow-lg shadow-indigo-500/40"></div>
-              <span class="inline-block px-3 py-1 text-xs font-semibold bg-indigo-500/20 text-indigo-300 rounded-full mb-2">2020</span>
-              <h4 class="text-lg font-semibold text-white">GATE AIR 257</h4>
-              <ul class="mt-2 space-y-1 text-sm text-gray-400">
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> AIR 257 in GATE Instrumentation Engineering</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Top 1% among 900,000+ candidates</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Interviews at IISc Bangalore, IIT Madras, IIT Delhi</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Converted MS admissions at IIT Delhi and IIT Madras</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Conducted research in signal processing and VLSI design</li>
-              </ul>
-            </div>
-
-            <!-- Milestone 4: New Chapter -- IIT Madras BS -->
-            <div id="milestone-4" class="relative academic-milestone">
-              <div class="academic-milestone-dot absolute -left-4 sm:-left-5 top-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 border-2 border-white/30 shadow-lg shadow-purple-500/50"></div>
-              <span class="inline-block px-3 py-1 text-xs font-semibold bg-gradient-to-r from-indigo-500/30 to-purple-500/30 text-white rounded-full mb-2">New Chapter</span>
-              <h4 class="text-lg font-semibold text-white">IIT Madras BS</h4>
-              <ul class="mt-2 space-y-1 text-sm text-gray-400">
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> ~99 percentile</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Pursuing IIT Madras BS in Data Science & Applications</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Studying ML, Big Data, AI, advanced mathematics</li>
-                <li class="flex items-start gap-2"><span class="text-indigo-400 mt-0.5">&#9679;</span> Working on real-world data projects</li>
+          <!-- Milestone 1: 2013 — Foundations -->
+          <div class="academic-milestone rounded-xl border transition-all duration-500 ease-out"
+               :class="activeMilestone === 0
+                 ? 'opacity-100 bg-gradient-to-br from-indigo-500/10 to-indigo-900/10 border-indigo-500/30 shadow-lg shadow-indigo-500/5 ring-1 ring-indigo-500/20'
+                 : 'opacity-50 bg-gray-800/20 border-gray-700/20 hover:opacity-70 hover:border-gray-600/30'">
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-sm font-bold transition-colors duration-500"
+                      :class="activeMilestone === 0 ? 'bg-indigo-500/20 text-indigo-300' : 'bg-gray-700/30 text-gray-500'">
+                  <i class="fas fa-seedling text-xs"></i>
+                </span>
+                <div>
+                  <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-widest transition-colors duration-500"
+                        :class="activeMilestone === 0 ? 'text-indigo-400' : 'text-gray-600'">2013</span>
+                  <h4 class="text-base sm:text-lg font-semibold leading-tight transition-colors duration-500"
+                      :class="activeMilestone === 0 ? 'text-white' : 'text-gray-500'">Foundations</h4>
+                </div>
+              </div>
+              <ul class="space-y-1.5 text-[13px] sm:text-sm leading-relaxed transition-colors duration-500"
+                  :class="activeMilestone === 0 ? 'text-gray-300' : 'text-gray-600'">
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> Strong interest in Science and Mathematics</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> Consistent topper at school and regional level</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> Early coding interest</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> Strong analytical mindset</li>
               </ul>
             </div>
           </div>
-        </div>
 
+          <!-- Milestone 2: 2017 — Undergraduate Journey -->
+          <div class="academic-milestone rounded-xl border transition-all duration-500 ease-out"
+               :class="activeMilestone === 1
+                 ? 'opacity-100 bg-gradient-to-br from-purple-500/10 to-purple-900/10 border-purple-500/30 shadow-lg shadow-purple-500/5 ring-1 ring-purple-500/20'
+                 : 'opacity-50 bg-gray-800/20 border-gray-700/20 hover:opacity-70 hover:border-gray-600/30'">
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-sm font-bold transition-colors duration-500"
+                      :class="activeMilestone === 1 ? 'bg-purple-500/20 text-purple-300' : 'bg-gray-700/30 text-gray-500'">
+                  <i class="fas fa-university text-xs"></i>
+                </span>
+                <div>
+                  <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-widest transition-colors duration-500"
+                        :class="activeMilestone === 1 ? 'text-purple-400' : 'text-gray-600'">2017</span>
+                  <h4 class="text-base sm:text-lg font-semibold leading-tight transition-colors duration-500"
+                      :class="activeMilestone === 1 ? 'text-white' : 'text-gray-500'">Undergraduate Journey</h4>
+                </div>
+              </div>
+              <p class="text-[13px] sm:text-sm leading-relaxed transition-colors duration-500"
+                 :class="activeMilestone === 1 ? 'text-gray-300' : 'text-gray-600'">
+                Bachelor's in Electronics and Instrumentation Engineering
+              </p>
+              <p class="text-[13px] sm:text-sm mt-1.5 transition-colors duration-500"
+                 :class="activeMilestone === 1 ? 'text-gray-400 font-medium' : 'text-gray-600'">
+                Focus: Circuit Design, Signal Processing, Sensors & Embedded Systems
+              </p>
+              <p class="text-[10px] mt-3 uppercase tracking-widest font-semibold transition-colors duration-500"
+                 :class="activeMilestone === 1 ? 'text-purple-400/80' : 'text-gray-600'">Highlights</p>
+              <ul class="mt-1.5 space-y-1.5 text-[13px] sm:text-sm leading-relaxed transition-colors duration-500"
+                  :class="activeMilestone === 1 ? 'text-gray-300' : 'text-gray-600'">
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Led "Microcontroller-Based Dual Axis Solar Tracking System"</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Research published at American Scientific Publishers (ASP)</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Mastered C++ and Python (Arduino Uno & Raspberry Pi)</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Academic Excellence Award (2014)</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Topped college and university stream</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Distinguished Alumni — Kriti Award (2019)</li>
+              </ul>
+
+              <!-- Attachments -->
+              <template x-if="attachments[2].length > 0">
+                <div class="mt-4 pt-3 border-t transition-colors duration-500"
+                     :class="activeMilestone === 1 ? 'border-purple-500/15' : 'border-gray-700/20'">
+                  <p class="text-[10px] uppercase tracking-widest font-semibold mb-2 transition-colors duration-500"
+                     :class="activeMilestone === 1 ? 'text-gray-400' : 'text-gray-600'">Supporting Documents</p>
+                  <div class="flex flex-wrap gap-2">
+                    <template x-for="item in attachments[2]" :key="item.label">
+                      <button @click="openPreview(item)"
+                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                                     border transition-all duration-200 hover:scale-[1.03]"
+                              :class="activeMilestone === 1
+                                ? 'bg-purple-500/10 border-purple-500/25 text-purple-300 hover:bg-purple-500/20'
+                                : 'bg-gray-800/40 border-gray-700/25 text-gray-500'">
+                        <i :class="item.type === 'pdf' ? 'fas fa-file-pdf' : 'fas fa-image'" class="text-[10px]"></i>
+                        <span x-text="item.label"></span>
+                      </button>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <!-- Milestone 3: 2020 — GATE AIR 257 -->
+          <div class="academic-milestone rounded-xl border transition-all duration-500 ease-out"
+               :class="activeMilestone === 2
+                 ? 'opacity-100 bg-gradient-to-br from-indigo-500/10 to-indigo-900/10 border-indigo-500/30 shadow-lg shadow-indigo-500/5 ring-1 ring-indigo-500/20'
+                 : 'opacity-50 bg-gray-800/20 border-gray-700/20 hover:opacity-70 hover:border-gray-600/30'">
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-sm font-bold transition-colors duration-500"
+                      :class="activeMilestone === 2 ? 'bg-indigo-500/20 text-indigo-300' : 'bg-gray-700/30 text-gray-500'">
+                  <i class="fas fa-award text-xs"></i>
+                </span>
+                <div>
+                  <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-widest transition-colors duration-500"
+                        :class="activeMilestone === 2 ? 'text-indigo-400' : 'text-gray-600'">2020</span>
+                  <h4 class="text-base sm:text-lg font-semibold leading-tight transition-colors duration-500"
+                      :class="activeMilestone === 2 ? 'text-white' : 'text-gray-500'">GATE AIR 257</h4>
+                </div>
+              </div>
+              <ul class="space-y-1.5 text-[13px] sm:text-sm leading-relaxed transition-colors duration-500"
+                  :class="activeMilestone === 2 ? 'text-gray-300' : 'text-gray-600'">
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> AIR 257 in GATE Instrumentation Engineering</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> Top 1% among 900,000+ candidates</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> Interviews at IISc Bangalore, IIT Madras, IIT Delhi</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> Converted MS admissions at IIT Delhi and IIT Madras</li>
+                <li class="flex items-start gap-2"><span class="text-indigo-400/70 mt-0.5 text-[8px]">&#9679;</span> Conducted research in signal processing and VLSI design</li>
+              </ul>
+
+              <!-- Attachments -->
+              <template x-if="attachments[3].length > 0">
+                <div class="mt-4 pt-3 border-t transition-colors duration-500"
+                     :class="activeMilestone === 2 ? 'border-indigo-500/15' : 'border-gray-700/20'">
+                  <p class="text-[10px] uppercase tracking-widest font-semibold mb-2 transition-colors duration-500"
+                     :class="activeMilestone === 2 ? 'text-gray-400' : 'text-gray-600'">Supporting Documents</p>
+                  <div class="flex flex-wrap gap-2">
+                    <template x-for="item in attachments[3]" :key="item.label">
+                      <button @click="openPreview(item)"
+                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                                     border transition-all duration-200 hover:scale-[1.03]"
+                              :class="activeMilestone === 2
+                                ? 'bg-indigo-500/10 border-indigo-500/25 text-indigo-300 hover:bg-indigo-500/20'
+                                : 'bg-gray-800/40 border-gray-700/25 text-gray-500'">
+                        <i :class="item.type === 'pdf' ? 'fas fa-file-pdf' : 'fas fa-image'" class="text-[10px]"></i>
+                        <span x-text="item.label"></span>
+                      </button>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <!-- Milestone 4: New Chapter — IIT Madras BS -->
+          <div class="academic-milestone rounded-xl border transition-all duration-500 ease-out"
+               :class="activeMilestone === 3
+                 ? 'opacity-100 bg-gradient-to-br from-indigo-500/8 to-purple-500/10 border-purple-500/30 shadow-lg shadow-purple-500/5 ring-1 ring-purple-500/20'
+                 : 'opacity-50 bg-gray-800/20 border-gray-700/20 hover:opacity-70 hover:border-gray-600/30'">
+            <div class="p-4 sm:p-5">
+              <div class="flex items-center gap-3 mb-3">
+                <span class="inline-flex items-center justify-center w-10 h-10 rounded-lg text-sm font-bold transition-colors duration-500"
+                      :class="activeMilestone === 3 ? 'bg-gradient-to-br from-indigo-500/20 to-purple-500/20 text-purple-300' : 'bg-gray-700/30 text-gray-500'">
+                  <i class="fas fa-rocket text-xs"></i>
+                </span>
+                <div>
+                  <span class="text-[10px] sm:text-xs font-semibold uppercase tracking-widest transition-colors duration-500"
+                        :class="activeMilestone === 3 ? 'text-purple-400' : 'text-gray-600'">New Chapter</span>
+                  <h4 class="text-base sm:text-lg font-semibold leading-tight transition-colors duration-500"
+                      :class="activeMilestone === 3 ? 'text-white' : 'text-gray-500'">IIT Madras BS</h4>
+                </div>
+              </div>
+              <ul class="space-y-1.5 text-[13px] sm:text-sm leading-relaxed transition-colors duration-500"
+                  :class="activeMilestone === 3 ? 'text-gray-300' : 'text-gray-600'">
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> ~99 percentile</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Pursuing IIT Madras BS in Data Science & Applications</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Studying ML, Big Data, AI, advanced mathematics</li>
+                <li class="flex items-start gap-2"><span class="text-purple-400/70 mt-0.5 text-[8px]">&#9679;</span> Working on real-world data projects</li>
+              </ul>
+
+              <!-- Attachments -->
+              <template x-if="attachments[4].length > 0">
+                <div class="mt-4 pt-3 border-t transition-colors duration-500"
+                     :class="activeMilestone === 3 ? 'border-purple-500/15' : 'border-gray-700/20'">
+                  <p class="text-[10px] uppercase tracking-widest font-semibold mb-2 transition-colors duration-500"
+                     :class="activeMilestone === 3 ? 'text-gray-400' : 'text-gray-600'">Supporting Documents</p>
+                  <div class="flex flex-wrap gap-2">
+                    <template x-for="item in attachments[4]" :key="item.label">
+                      <button @click="openPreview(item)"
+                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium
+                                     border transition-all duration-200 hover:scale-[1.03]"
+                              :class="activeMilestone === 3
+                                ? 'bg-purple-500/10 border-purple-500/25 text-purple-300 hover:bg-purple-500/20'
+                                : 'bg-gray-800/40 border-gray-700/25 text-gray-500'">
+                        <i :class="item.type === 'pdf' ? 'fas fa-file-pdf' : 'fas fa-image'" class="text-[10px]"></i>
+                        <span x-text="item.label"></span>
+                      </button>
+                    </template>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Document Preview Overlay -->
+    <div x-show="previewOpen" x-cloak
+         class="fixed inset-0 z-[60] flex items-center justify-center px-4 py-8"
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0"
+         x-transition:enter-end="opacity-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100"
+         x-transition:leave-end="opacity-0">
+
+      <div class="absolute inset-0 bg-black/80 backdrop-blur-md" @click="closePreview()"></div>
+
+      <div class="relative z-10 flex flex-col items-center gap-4 max-w-4xl w-full">
+        <button @click="closePreview()"
+                class="absolute -top-2 right-0 sm:right-2 text-gray-300 hover:text-white transition-colors
+                       bg-gray-800/80 rounded-full p-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+          </svg>
+        </button>
+
+        <p class="text-sm text-gray-300 font-medium mt-6" x-text="previewItem?.label"></p>
+
+        <template x-if="previewItem?.type === 'image'">
+          <img :src="previewItem.src" :alt="previewItem.label"
+               class="max-h-[70vh] max-w-full rounded-lg shadow-2xl border border-gray-700/50">
+        </template>
+
+        <template x-if="previewItem?.type === 'pdf'">
+          <div class="w-full">
+            <iframe :src="previewItem.src" class="hidden sm:block w-full h-[70vh] rounded-lg border border-gray-700/50 bg-white"></iframe>
+            <div class="sm:hidden text-center">
+              <p class="text-gray-400 text-sm mb-3">PDF preview is not available on mobile.</p>
+              <a :href="previewItem.src" download
+                 class="inline-flex items-center gap-2 px-4 py-2 rounded-lg
+                        bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition-colors">
+                <i class="fas fa-download"></i> Download PDF
+              </a>
+            </div>
+          </div>
+        </template>
       </div>
     </div>
   </div>
@@ -640,6 +807,9 @@
           <div class="skill-logo" data-title="Python" data-desc="Core backend & data language">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
           </div>
+          <div class="skill-logo" data-title="JavaScript" data-desc="Versatile language for full-stack development">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+          </div>
         </div>
 
         <p class="skill-note">
@@ -670,6 +840,9 @@
           </div>
           <div class="skill-logo" data-title="Docker" data-desc="Containerized deployments">
             <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+          </div>
+          <div class="skill-logo" data-title="Azure" data-desc="Microsoft cloud platform and services">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" alt="Azure">
           </div>
         </div>
 
@@ -756,44 +929,36 @@
   <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px
               bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"></div>
 
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 text-center">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
 
     <!-- Heading -->
-    <h2
-      class="text-3xl sm:text-4xl font-extrabold bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
-      Projects
-    </h2>
+    <div class="text-center mb-10 sm:mb-14">
+      <h2 class="text-3xl sm:text-4xl font-extrabold">
+        <span class="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+          Projects
+        </span>
+      </h2>
+      <p class="mt-3 text-sm sm:text-[1.05rem] text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Selected projects where I’ve designed and built
+        <span class="text-indigo-400 font-medium">production-grade systems</span>.
+      </p>
+    </div>
 
-    <p class="mt-3 text-sm sm:text-base text-gray-300 max-w-2xl mx-auto">
-      Selected projects where I’ve designed and built
-      <span class="text-indigo-400 font-medium">production-grade systems</span>.
-    </p>
+    <!-- Carousel -->
+    <div class="project-carousel-wrapper relative">
 
-    <!-- Carousel Wrapper with Edge Fades -->
-    <div class="relative overflow-hidden mt-10 sm:mt-14">
-      <!-- Left fade overlay -->
-      <div class="absolute left-0 top-0 bottom-0 w-6 sm:w-12 md:w-16 bg-gradient-to-r from-[#0b1220] to-transparent pointer-events-none z-10"></div>
-      <!-- Right fade overlay -->
-      <div class="absolute right-0 top-0 bottom-0 w-6 sm:w-12 md:w-16 bg-gradient-to-l from-[#0b1220] to-transparent pointer-events-none z-10"></div>
+      <div id="projectCarousel" class="flex gap-5 sm:gap-6 overflow-x-auto scroll-snap-x no-scrollbar pb-4 px-1">
 
-      <div id="projectCarousel" class="flex gap-6 overflow-x-auto scroll-snap-x no-scrollbar pb-4">
-
-        <!-- PROJECT CARD -->
+        <!-- PROJECT CARD 1 -->
         <div class="project-card group">
-
-          <!-- Banner -->
           <div class="project-banner">
-            <img src="https://placehold.co/600x240/png" alt="Expense Tracker Platform banner">
+            <img src="https://placehold.co/600x280/1e293b/6366f1?text=Expense+Tracker&font=source-sans-pro" alt="Expense Tracker Platform">
+            <div class="project-banner-overlay"></div>
           </div>
-
-          <!-- Content Wrapper -->
           <div class="project-inner">
-
-            <!-- Front -->
             <div class="project-front">
               <h3>Expense Tracker Platform</h3>
               <p>Secure, scalable expense management system.</p>
-
               <div class="project-tech">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg" alt="Flask">
@@ -801,60 +966,53 @@
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS">
               </div>
             </div>
-
-            <!-- Back -->
             <div class="project-back">
               <p>
                 Built with authentication, REST APIs, dashboards, and cloud deployment —
                 focused on clean architecture and real-world usage.
               </p>
-
               <div class="project-actions">
-                <a href="#">Code</a>
-                <a href="#">Live</a>
+                <a href="#" aria-label="View source code"><i class="fab fa-github"></i> Code</a>
+                <a href="#" aria-label="View live demo"><i class="fas fa-external-link-alt"></i> Live</a>
               </div>
             </div>
-
           </div>
         </div>
 
-        <!-- PROJECT CARD -->
+        <!-- PROJECT CARD 2 -->
         <div class="project-card group">
-
           <div class="project-banner">
-            <img src="https://placehold.co/600x240/png" alt="Cloud Task Automation banner">
+            <img src="https://placehold.co/600x280/1e293b/a855f7?text=Cloud+Automation&font=source-sans-pro" alt="Cloud Task Automation">
+            <div class="project-banner-overlay"></div>
           </div>
-
           <div class="project-inner">
             <div class="project-front">
               <h3>Cloud Task Automation</h3>
               <p>Parallel task execution using cloud infrastructure.</p>
-
               <div class="project-tech">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
                 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" alt="GCP">
               </div>
             </div>
-
             <div class="project-back">
               <p>
                 Serverless automation platform improving processing efficiency
                 by ~40% using multiprocessing and containerized workflows.
               </p>
-
               <div class="project-actions">
-                <a href="#">Code</a>
-                <a href="#">Live</a>
+                <a href="#" aria-label="View source code"><i class="fab fa-github"></i> Code</a>
+                <a href="#" aria-label="View live demo"><i class="fas fa-external-link-alt"></i> Live</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT CARD -->
+        <!-- PROJECT CARD 3 -->
         <div class="project-card group">
           <div class="project-banner">
-            <img src="https://placehold.co/600x240/png" alt="Real-Time Chat System banner">
+            <img src="https://placehold.co/600x280/1e293b/6366f1?text=Chat+System&font=source-sans-pro" alt="Real-Time Chat System">
+            <div class="project-banner-overlay"></div>
           </div>
           <div class="project-inner">
             <div class="project-front">
@@ -872,17 +1030,18 @@
                 and persistent chat history using WebSockets and Redis pub/sub.
               </p>
               <div class="project-actions">
-                <a href="#">Code</a>
-                <a href="#">Live</a>
+                <a href="#" aria-label="View source code"><i class="fab fa-github"></i> Code</a>
+                <a href="#" aria-label="View live demo"><i class="fas fa-external-link-alt"></i> Live</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT CARD -->
+        <!-- PROJECT CARD 4 -->
         <div class="project-card group">
           <div class="project-banner">
-            <img src="https://placehold.co/600x240/png" alt="Data Pipeline Engine banner">
+            <img src="https://placehold.co/600x280/1e293b/a855f7?text=Data+Pipeline&font=source-sans-pro" alt="Data Pipeline Engine">
+            <div class="project-banner-overlay"></div>
           </div>
           <div class="project-inner">
             <div class="project-front">
@@ -900,17 +1059,18 @@
                 Kafka streaming, PostgreSQL storage, and automated quality checks.
               </p>
               <div class="project-actions">
-                <a href="#">Code</a>
-                <a href="#">Live</a>
+                <a href="#" aria-label="View source code"><i class="fab fa-github"></i> Code</a>
+                <a href="#" aria-label="View live demo"><i class="fas fa-external-link-alt"></i> Live</a>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- PROJECT CARD -->
+        <!-- PROJECT CARD 5 -->
         <div class="project-card group">
           <div class="project-banner">
-            <img src="https://placehold.co/600x240/png" alt="IoT Sensor Dashboard banner">
+            <img src="https://placehold.co/600x280/1e293b/6366f1?text=IoT+Dashboard&font=source-sans-pro" alt="IoT Sensor Dashboard">
+            <div class="project-banner-overlay"></div>
           </div>
           <div class="project-inner">
             <div class="project-front">
@@ -928,8 +1088,8 @@
                 time-series storage, and D3.js interactive charts.
               </p>
               <div class="project-actions">
-                <a href="#">Code</a>
-                <a href="#">Live</a>
+                <a href="#" aria-label="View source code"><i class="fab fa-github"></i> Code</a>
+                <a href="#" aria-label="View live demo"><i class="fas fa-external-link-alt"></i> Live</a>
               </div>
             </div>
           </div>
@@ -944,329 +1104,276 @@
 <!-- Testimonials Section -->
 <section id="testimonials" class="fade-section relative bg-gradient-to-b from-[#0d1117] via-[#0d1117] to-[#161b22] py-20">
 
-    <!-- Divider -->
-    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px
-                bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"></div>
+  <!-- Divider -->
+  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px
+              bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"></div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <!-- Heading -->
-      <h2 class="text-3xl sm:text-4xl font-extrabold text-center mb-4"><span class="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">Testimonials</span></h2>
-      <p class="text-center text-base sm:text-lg text-gray-400 mb-10">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6">
+
+    <div class="text-center mb-10">
+      <h2 class="text-3xl sm:text-4xl font-extrabold mb-2">
+        <span class="bg-gradient-to-r from-indigo-400 to-purple-500 bg-clip-text text-transparent">
+          Testimonials
+        </span>
+      </h2>
+      <p class="text-sm sm:text-[1.05rem] text-gray-400 leading-relaxed">
         What people say about working with me.
       </p>
+    </div>
 
-      <!-- Scrolling container -->
-      <div class="relative overflow-hidden">
-        <!-- Left fade overlay -->
-        <div class="absolute left-0 top-0 bottom-0 w-8 sm:w-16 md:w-20 bg-gradient-to-r from-[#0d1117] to-transparent pointer-events-none z-10"></div>
-        <!-- Right fade overlay -->
-        <div class="absolute right-0 top-0 bottom-0 w-8 sm:w-16 md:w-20 bg-gradient-to-l from-[#0d1117] to-transparent pointer-events-none z-10"></div>
+    <!-- Marquee wrapper -->
+    <div class="testimonial-marquee-wrapper overflow-hidden">
+      <div id="testimonialStrip" class="flex testimonial-strip">
 
-        <div id="testimonialStrip" class="flex animate-marquee space-x-8 hover:[animation-play-state:paused]">
-
-          <!-- Testimonial Card -->
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “This service exceeded my expectations! The team was professional and delivered on time. Truly a
-              delightful experience.This service exceeded my expectations! The team was professional and delivered on
-              time. Truly a delightful experience.“
-            </p>
-            <div class="flex items-center space-x-4 mt-auto">
-              <img src="https://i.pravatar.cc/100?img=1" alt="Client"
-                class="w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md">
-              <div>
-                <h4 class="text-white font-semibold">Jane Doe</h4>
-                <span class="text-sm text-gray-400">CEO, Startup Inc.</span>
-              </div>
+        <!-- Card 1 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"This service exceeded my expectations! The team was professional and delivered on time. Truly a delightful experience from start to finish."</p>
+          <div class="testimonial-author">
+            <img src="https://i.pravatar.cc/100?img=1" alt="Jane Doe" class="testimonial-avatar">
+            <div>
+              <h4 class="text-[13px] font-semibold text-white leading-tight">Jane Doe</h4>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">CEO, Startup Inc.</p>
             </div>
           </div>
-
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “Working with this company was a pleasure. I highly recommend their services for anyone who values
-              quality.“
-            </p>
-            <div class="flex items-center space-x-4 mt-auto">
-              <img src="https://i.pravatar.cc/100?img=2" alt="Client"
-                class="w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md">
-              <div>
-                <h4 class="text-white font-semibold">John Smith</h4>
-                <span class="text-sm text-gray-400">Marketing Head</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “Fantastic experience from start to finish. The attention to detail and professionalism was outstanding.“
-            </p>
-            <div class="flex items-center space-x-4 mt-auto">
-              <img src="https://i.pravatar.cc/100?img=3" alt="Client"
-                class="w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md">
-              <div>
-                <h4 class="text-white font-semibold">Alice Johnson</h4>
-                <span class="text-sm text-gray-400">Product Manager</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial Card 4 -->
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “Shovan's backend expertise transformed our infrastructure. His attention to detail and systematic approach made the entire migration seamless.”
-            </p>
-            <div class=”flex items-center space-x-4 mt-auto”>
-              <img src="https://i.pravatar.cc/100?img=4" alt=”Client” class=”w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md”>
-              <div>
-                <h4 class=”text-white font-semibold”>David Chen</h4>
-                <span class=”text-sm text-gray-400”>CTO, CloudScale</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Testimonial Card 5 -->
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “An exceptional developer who truly understands both the technical and business sides. The solutions he delivered exceeded our expectations.”
-            </p>
-            <div class=”flex items-center space-x-4 mt-auto”>
-              <img src="https://i.pravatar.cc/100?img=5" alt=”Client” class=”w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md”>
-              <div>
-                <h4 class=”text-white font-semibold”>Sarah Miller</h4>
-                <span class=”text-sm text-gray-400”>Engineering Lead</span>
-              </div>
-            </div>
-          </div>
-
-          <!-- Duplicates of all 5 cards for seamless infinite loop -->
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “This service exceeded my expectations! The team was professional and delivered on time. Truly a
-              delightful experience.This service exceeded my expectations! The team was professional and delivered on
-              time. Truly a delightful experience.“
-            </p>
-            <div class="flex items-center space-x-4 mt-auto">
-              <img src="https://i.pravatar.cc/100?img=1" alt="Client"
-                class="w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md">
-              <div>
-                <h4 class="text-white font-semibold">Jane Doe</h4>
-                <span class="text-sm text-gray-400">CEO, Startup Inc.</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “Working with this company was a pleasure. I highly recommend their services for anyone who values
-              quality.“
-            </p>
-            <div class="flex items-center space-x-4 mt-auto">
-              <img src="https://i.pravatar.cc/100?img=2" alt="Client"
-                class="w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md">
-              <div>
-                <h4 class="text-white font-semibold">John Smith</h4>
-                <span class="text-sm text-gray-400">Marketing Head</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “Fantastic experience from start to finish. The attention to detail and professionalism was outstanding.“
-            </p>
-            <div class="flex items-center space-x-4 mt-auto">
-              <img src="https://i.pravatar.cc/100?img=3" alt="Client"
-                class="w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md">
-              <div>
-                <h4 class="text-white font-semibold">Alice Johnson</h4>
-                <span class="text-sm text-gray-400">Product Manager</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “Shovan's backend expertise transformed our infrastructure. His attention to detail and systematic approach made the entire migration seamless.”
-            </p>
-            <div class=”flex items-center space-x-4 mt-auto”>
-              <img src="https://i.pravatar.cc/100?img=4" alt=”Client” class=”w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md”>
-              <div>
-                <h4 class=”text-white font-semibold”>David Chen</h4>
-                <span class=”text-sm text-gray-400”>CTO, CloudScale</span>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="w-[500px] flex-shrink-0 bg-[#161b22] border border-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl hover:scale-105 transition-all flex flex-col justify-between">
-            <p class="text-gray-300 leading-relaxed text-base mb-6">
-              “An exceptional developer who truly understands both the technical and business sides. The solutions he delivered exceeded our expectations.”
-            </p>
-            <div class=”flex items-center space-x-4 mt-auto”>
-              <img src="https://i.pravatar.cc/100?img=5" alt=”Client” class=”w-14 h-14 rounded-full object-cover border-2 border-purple-500 shadow-md”>
-              <div>
-                <h4 class=”text-white font-semibold”>Sarah Miller</h4>
-                <span class=”text-sm text-gray-400”>Engineering Lead</span>
-              </div>
-            </div>
-          </div>
-
         </div>
+
+        <!-- Card 2 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Working with Shovan was a pleasure. I highly recommend his services for anyone who values quality and reliability."</p>
+          <div class="testimonial-author">
+            <img src="https://i.pravatar.cc/100?img=2" alt="John Smith" class="testimonial-avatar">
+            <div>
+              <h4 class="text-[13px] font-semibold text-white leading-tight">John Smith</h4>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">Marketing Head</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Fantastic experience from start to finish. The attention to detail and professionalism was outstanding."</p>
+          <div class="testimonial-author">
+            <img src="https://i.pravatar.cc/100?img=3" alt="Alice Johnson" class="testimonial-avatar">
+            <div>
+              <h4 class="text-[13px] font-semibold text-white leading-tight">Alice Johnson</h4>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">Product Manager</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"Shovan's backend expertise transformed our infrastructure. His systematic approach made the entire migration seamless."</p>
+          <div class="testimonial-author">
+            <img src="https://i.pravatar.cc/100?img=4" alt="David Chen" class="testimonial-avatar">
+            <div>
+              <h4 class="text-[13px] font-semibold text-white leading-tight">David Chen</h4>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">CTO, CloudScale</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"An exceptional developer who truly understands both the technical and business sides. The solutions exceeded our expectations."</p>
+          <div class="testimonial-author">
+            <img src="https://i.pravatar.cc/100?img=5" alt="Sarah Miller" class="testimonial-avatar">
+            <div>
+              <h4 class="text-[13px] font-semibold text-white leading-tight">Sarah Miller</h4>
+              <p class="text-[11px] text-gray-500 leading-tight mt-0.5">Engineering Lead</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
 </main>
 
   <!-- Footer Section -->
-<footer id="contact" x-data="{ showContactModal: false }" class="fade-section relative bg-[#0d1117] py-12 border-t border-gray-800">
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-px
-              bg-gradient-to-r from-transparent via-indigo-500/40 to-transparent"></div>
+<div x-data="{ showContactModal: false }">
+<footer id="contact" class="fade-section relative bg-[#0d1117]">
 
-  <div class="max-w-6xl mx-auto px-4 sm:px-6">
-
-    <!-- Main Footer Row -->
-    <div class="flex flex-col md:flex-row items-center justify-between gap-6 sm:gap-8 mb-8">
-
-      <!-- Quick Links -->
-      <nav class="flex flex-wrap justify-center gap-6">
-        <a href="#about" class="text-gray-400 hover:text-indigo-400 transition-colors text-sm">About</a>
-        <a href="#skills" class="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Skills</a>
-        <a href="#projects" class="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Projects</a>
-        <a href="#testimonials" class="text-gray-400 hover:text-indigo-400 transition-colors text-sm">Testimonials</a>
-      </nav>
-
-      <!-- Social Links -->
-      <div class="flex items-center gap-5">
-        <a href="#" aria-label="GitHub" class="text-gray-400 hover:text-white transition-colors text-xl">
-          <i class="fab fa-github"></i>
-        </a>
-        <a href="#" aria-label="LinkedIn" class="text-gray-400 hover:text-white transition-colors text-xl">
-          <i class="fab fa-linkedin"></i>
-        </a>
-        <a href="#" aria-label="Twitter" class="text-gray-400 hover:text-white transition-colors text-xl">
-          <i class="fab fa-twitter"></i>
-        </a>
-      </div>
-
-      <!-- Resume + Contact -->
-      <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="resume.pdf" download
-           class="inline-flex items-center gap-2 px-4 py-2 rounded-lg
-                  border border-gray-700 text-gray-300
-                  hover:border-indigo-500 hover:text-white
-                  transition-all text-sm">
-          <i class="fas fa-download"></i>
-          Resume
-        </a>
+  <!-- ── Top CTA Block ── -->
+  <div class="relative overflow-hidden border-t border-gray-800">
+    <div class="absolute inset-0 bg-gradient-to-br from-indigo-950/40 via-[#0d1117] to-purple-950/30"></div>
+    <div class="relative max-w-6xl mx-auto px-5 sm:px-6 py-16 sm:py-20">
+      <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+        <div class="text-center md:text-left">
+          <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            Let's Build Something Together
+          </h2>
+          <p class="mt-3 text-gray-400 text-sm sm:text-base max-w-md">
+            Have a project idea or want to collaborate? I'm always open to discussing new opportunities.
+          </p>
+        </div>
         <button @click="showContactModal = true"
-                class="inline-flex items-center gap-2 px-5 py-2 rounded-lg
+                class="inline-flex items-center gap-2.5 px-7 py-3.5 rounded-xl
                        bg-gradient-to-r from-indigo-600 to-purple-600
                        hover:from-indigo-500 hover:to-purple-500
-                       text-white text-sm font-medium
-                       transition-all duration-300 hover:scale-105">
-          <i class="fas fa-envelope"></i>
-          Contact Me
+                       text-white text-sm font-semibold tracking-wide
+                       shadow-lg shadow-indigo-500/20 hover:shadow-indigo-500/30
+                       transition-all duration-300 hover:scale-105 flex-shrink-0">
+          <i class="fas fa-envelope text-xs"></i>
+          Let's Work Together
         </button>
       </div>
+    </div>
+  </div>
+
+  <!-- ── Gradient Divider ── -->
+  <div class="h-px bg-gradient-to-r from-transparent via-gray-700/60 to-transparent"></div>
+
+  <!-- ── Footer Bottom Bar ── -->
+  <div x-data="{ copied: false }" class="max-w-6xl mx-auto px-5 sm:px-6 py-8 sm:py-10">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+
+      <!-- Left — Logo + Brand + Email -->
+      <div class="flex flex-col sm:flex-row items-center gap-3 sm:gap-5">
+        <div class="footer-logo-box group relative">
+          <img src="img/Untitled design (2).svg" alt="Logo" class="w-full h-full object-contain p-2">
+          <span class="footer-logo-tip">From atoms to algorithms.</span>
+        </div>
+        <span class="text-sm font-semibold text-white tracking-tight">Shovan Kar</span>
+        <span class="hidden sm:block w-px h-4 bg-gray-700"></span>
+        <button @click="navigator.clipboard.writeText('shovankar@example.com'); copied = true; setTimeout(() => copied = false, 1800)"
+                class="footer-email-btn relative inline-flex items-center gap-1.5 text-gray-500 hover:text-indigo-400 transition-colors text-sm cursor-pointer">
+          <i class="fas fa-envelope text-xs"></i>
+          shovankar@example.com
+          <span class="footer-copied-tip" :class="copied ? 'opacity-100' : 'opacity-0'">Copied!</span>
+        </button>
+      </div>
+
+      <!-- Center — Quick Links -->
+      <nav class="flex flex-wrap justify-center gap-5 sm:gap-6">
+        <a href="#about" class="text-gray-500 hover:text-indigo-400 transition-colors text-sm">About</a>
+        <a href="#skills" class="text-gray-500 hover:text-indigo-400 transition-colors text-sm">Skills</a>
+        <a href="#projects" class="text-gray-500 hover:text-indigo-400 transition-colors text-sm">Projects</a>
+        <a href="#testimonials" class="text-gray-500 hover:text-indigo-400 transition-colors text-sm">Testimonials</a>
+      </nav>
+
+      <!-- Right — Social Icons -->
+      <div class="flex items-center gap-3">
+        <a href="#" aria-label="GitHub" class="footer-social-icon group">
+          <i class="fab fa-github"></i>
+          <span class="footer-tooltip">GitHub</span>
+        </a>
+        <a href="#" aria-label="LinkedIn" class="footer-social-icon group">
+          <i class="fab fa-linkedin-in"></i>
+          <span class="footer-tooltip">LinkedIn</span>
+        </a>
+        <a href="#" aria-label="Twitter" class="footer-social-icon group">
+          <i class="fab fa-twitter"></i>
+          <span class="footer-tooltip">Twitter</span>
+        </a>
+        <a href="#" aria-label="Medium" class="footer-social-icon group">
+          <i class="fab fa-medium-m"></i>
+          <span class="footer-tooltip">Medium</span>
+        </a>
+        <a href="#" aria-label="Instagram" class="footer-social-icon group">
+          <i class="fab fa-instagram"></i>
+          <span class="footer-tooltip">Instagram</span>
+        </a>
+      </div>
+
     </div>
 
     <!-- Copyright -->
-    <div class="border-t border-gray-800 pt-6 text-center">
-      <p class="text-sm text-gray-500">Copyright &copy; 2025–2026 Shovan Kar. All rights reserved.</p>
+    <div class="mt-8 pt-6 border-t border-gray-800/50 text-center">
+      <p class="text-xs text-gray-600">
+        &copy; <span id="copyrightYear"></span> Shovan Kar. All rights reserved.
+      </p>
     </div>
   </div>
 
-  <!-- Contact Modal -->
-  <div x-show="showContactModal" x-cloak
-       class="fixed inset-0 z-50 flex items-center justify-center px-4"
-       @keydown.escape.window="showContactModal = false">
-
-    <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"
-         @click="showContactModal = false"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0"
-         x-transition:enter-end="opacity-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100"
-         x-transition:leave-end="opacity-0"></div>
-
-    <div class="relative w-full max-w-lg max-h-[90vh] overflow-y-auto
-                bg-[#161b22] border border-gray-700/50 rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8
-                shadow-2xl shadow-indigo-500/10"
-         x-transition:enter="transition ease-out duration-300"
-         x-transition:enter-start="opacity-0 scale-95"
-         x-transition:enter-end="opacity-100 scale-100"
-         x-transition:leave="transition ease-in duration-200"
-         x-transition:leave-start="opacity-100 scale-100"
-         x-transition:leave-end="opacity-0 scale-95">
-
-      <button @click="showContactModal = false"
-              class="absolute top-4 right-4 text-gray-400 hover:text-white transition-colors">
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-        </svg>
-      </button>
-
-      <h3 class="text-xl font-bold text-white mb-6">Get in Touch</h3>
-
-      <form id="contactForm" class="space-y-4" novalidate>
-        <div>
-          <input type="text" id="contactName" placeholder="Your Name"
-                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg
-                        text-white text-sm placeholder-gray-500
-                        focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500
-                        transition-colors">
-          <p id="nameError" class="text-red-400 text-xs mt-1 hidden"></p>
-        </div>
-        <div>
-          <input type="email" id="contactEmail" placeholder="Your Email"
-                 class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg
-                        text-white text-sm placeholder-gray-500
-                        focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500
-                        transition-colors">
-          <p id="emailError" class="text-red-400 text-xs mt-1 hidden"></p>
-        </div>
-        <div>
-          <textarea id="contactMessage" placeholder="Your Message" rows="4"
-                    class="w-full px-4 py-3 bg-gray-800/50 border border-gray-700 rounded-lg
-                           text-white text-sm placeholder-gray-500 resize-none
-                           focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500
-                           transition-colors"></textarea>
-          <p id="messageError" class="text-red-400 text-xs mt-1 hidden"></p>
-        </div>
-        <button type="submit"
-                class="w-full px-6 py-3 rounded-lg
-                       bg-gradient-to-r from-indigo-600 to-purple-600
-                       hover:from-indigo-500 hover:to-purple-500
-                       text-white font-medium text-sm
-                       transition-all duration-300 hover:scale-[1.02]
-                       focus:outline-none focus:ring-2 focus:ring-indigo-400">
-          Send Message
-        </button>
-        <p id="formSuccess" class="text-green-400 text-sm text-center hidden">Message sent successfully!</p>
-      </form>
-    </div>
-  </div>
 </footer>
+
+<!-- Contact Modal (outside footer to avoid transform containing block) -->
+<div x-show="showContactModal" x-cloak
+     class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 sm:py-8"
+     @keydown.escape.window="showContactModal = false">
+
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm"
+       @click="showContactModal = false"
+       x-transition:enter="transition ease-out duration-300"
+       x-transition:enter-start="opacity-0"
+       x-transition:enter-end="opacity-100"
+       x-transition:leave="transition ease-in duration-200"
+       x-transition:leave-start="opacity-100"
+       x-transition:leave-end="opacity-0"></div>
+
+  <div class="relative w-full max-w-lg max-h-[85vh] sm:max-h-[90vh] overflow-y-auto
+              bg-[#161b22] border border-gray-700/50 rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8
+              shadow-2xl shadow-indigo-500/10"
+       x-transition:enter="transition ease-out duration-300"
+       x-transition:enter-start="opacity-0 scale-95"
+       x-transition:enter-end="opacity-100 scale-100"
+       x-transition:leave="transition ease-in duration-200"
+       x-transition:leave-start="opacity-100 scale-100"
+       x-transition:leave-end="opacity-0 scale-95">
+
+    <button @click="showContactModal = false"
+            class="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 flex items-center justify-center
+                   rounded-lg text-gray-400 hover:text-white hover:bg-white/5 transition-all">
+      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
+    <h3 class="text-lg sm:text-xl font-bold text-white mb-5 sm:mb-6">Get in Touch</h3>
+
+    <form id="contactForm" class="space-y-3.5 sm:space-y-4" novalidate>
+      <div>
+        <input type="text" id="contactName" placeholder="Your Name"
+               class="w-full px-4 py-2.5 sm:py-3 bg-gray-800/50 border border-gray-700 rounded-lg
+                      text-white text-sm placeholder-gray-500
+                      focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500
+                      transition-colors">
+        <p id="nameError" class="text-red-400 text-xs mt-1 hidden"></p>
+      </div>
+      <div>
+        <input type="email" id="contactEmail" placeholder="Your Email"
+               class="w-full px-4 py-2.5 sm:py-3 bg-gray-800/50 border border-gray-700 rounded-lg
+                      text-white text-sm placeholder-gray-500
+                      focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500
+                      transition-colors">
+        <p id="emailError" class="text-red-400 text-xs mt-1 hidden"></p>
+      </div>
+      <div>
+        <textarea id="contactMessage" placeholder="Your Message" rows="3"
+                  class="w-full px-4 py-2.5 sm:py-3 bg-gray-800/50 border border-gray-700 rounded-lg
+                         text-white text-sm placeholder-gray-500 resize-none
+                         focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500
+                         transition-colors sm:[rows='4']"></textarea>
+        <p id="messageError" class="text-red-400 text-xs mt-1 hidden"></p>
+      </div>
+      <button type="submit"
+              class="w-full px-6 py-2.5 sm:py-3 rounded-lg
+                     bg-gradient-to-r from-indigo-600 to-purple-600
+                     hover:from-indigo-500 hover:to-purple-500
+                     text-white font-medium text-sm
+                     transition-all duration-300 hover:scale-[1.02]
+                     focus:outline-none focus:ring-2 focus:ring-indigo-400">
+        Send Message
+      </button>
+      <p id="formSuccess" class="text-green-400 text-sm text-center hidden">Message sent successfully!</p>
+    </form>
+  </div>
+</div>
+</div>
 
 <!-- Back to Top -->
 <button id="backToTop" aria-label="Back to top"
-        class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-50
-               w-10 h-10 sm:w-12 sm:h-12
-               bg-indigo-600 hover:bg-indigo-500
-               text-white rounded-full shadow-lg
+        class="fixed bottom-5 right-5 sm:bottom-7 sm:right-7 z-50
+               w-11 h-11 sm:w-12 sm:h-12
+               bg-[#161b22] hover:bg-indigo-600
+               border border-gray-700/50 hover:border-indigo-500
+               text-gray-400 hover:text-white rounded-full
+               shadow-lg shadow-black/30 hover:shadow-indigo-500/25
                flex items-center justify-center
-               transition-all duration-300
+               transition-all duration-300 hover:-translate-y-0.5
                opacity-0 invisible translate-y-4">
   <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>
