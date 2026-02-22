@@ -305,8 +305,7 @@
 </section>
 
 <!-- About Section -->
-<section id="about"
-  x-data="{
+<div x-data="{
     showAcademicModal: false,
     activeMilestone: 0,
     previewOpen: false,
@@ -326,7 +325,8 @@
     },
     openPreview(item) { this.previewItem = item; this.previewOpen = true; },
     closePreview() { this.previewOpen = false; this.previewItem = null; }
-  }"
+  }">
+<section id="about"
   class="fade-section relative py-20 bg-gradient-to-b from-[#0b1220] via-[#0f172a] to-[#0b1220] overflow-hidden">
 
   <!-- Ambient top glow -->
@@ -462,10 +462,12 @@
     </div>
   </div>
 
-  <!-- Academic Details Modal -->
-  <div x-show="showAcademicModal" x-cloak
-       class="fixed inset-0 z-50 flex items-center justify-center"
-       @keydown.escape.window="previewOpen ? closePreview() : (showAcademicModal = false)">
+</section>
+
+<!-- Academic Details Modal (outside section to avoid transform containing block) -->
+<div x-show="showAcademicModal" x-cloak
+     class="fixed inset-0 z-50 flex items-center justify-center px-4 py-6 sm:py-8"
+     @keydown.escape.window="previewOpen ? closePreview() : (showAcademicModal = false)">
 
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black/70 backdrop-blur-sm"
@@ -755,8 +757,7 @@
       </div>
     </div>
   </div>
-
-</section>
+</div>
 
 <!-- Skills & Expertise -->
 <section id="skills"
