@@ -92,20 +92,27 @@
 
 <body class="font-mono bg-gray-900 text-white">
 
-  <!-- Minimal Preloader -->
+  <!-- Preloader -->
   <div id="preloader"
     class="fixed inset-0 z-[9999] flex items-center justify-center bg-[#0d1117]">
 
-    <div class="flex flex-col items-center gap-4">
-      <!-- Name / Monogram -->
-      <div class="text-2xl font-semibold tracking-wide text-indigo-400">
-        SK
+    <div class="flex flex-col items-center gap-6">
+      <!-- Logo with animated ring -->
+      <div class="preloader-logo-wrap">
+        <div class="preloader-ring"></div>
+        <div class="preloader-ring preloader-ring-2"></div>
+        <div class="preloader-logo-box">
+          <img src="img/Untitled design (2).svg" alt="Logo" class="preloader-logo-img">
+        </div>
       </div>
 
-      <!-- Loading line -->
-      <div class="w-40 h-[2px] bg-gray-800 overflow-hidden rounded">
-        <div class="h-full w-full bg-indigo-500 animate-loading-line"></div>
+      <!-- Loading bar -->
+      <div class="w-32 h-[2px] bg-gray-800/60 overflow-hidden rounded-full">
+        <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 animate-loading-line rounded-full"></div>
       </div>
+
+      <!-- Tagline -->
+      <p class="preloader-tagline text-xs text-gray-500 italic tracking-wide">Where science meets systems.</p>
     </div>
   </div>
 
