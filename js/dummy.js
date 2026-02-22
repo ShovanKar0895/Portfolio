@@ -257,6 +257,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const strip = document.getElementById("testimonialStrip");
   if (!strip) return;
 
+  // Clone all cards to create seamless infinite loop
+  const cards = Array.from(strip.children);
+  cards.forEach((card) => {
+    const clone = card.cloneNode(true);
+    clone.setAttribute("aria-hidden", "true");
+    strip.appendChild(clone);
+  });
+
   let position = 0;
   const speed = 0.4;
   let isDragging = false;
